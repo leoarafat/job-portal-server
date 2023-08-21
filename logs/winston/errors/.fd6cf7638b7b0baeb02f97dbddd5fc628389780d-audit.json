@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\.fd6cf7638b7b0baeb02f97dbddd5fc628389780d-audit.json",
+    "files": [
+        {
+            "date": 1692621207622,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-21-08-20-error.log",
+            "hash": "f5cfd9958d783e36559d0e47e1ecba975a96396b7132e3345cbabafcb97db542"
+        },
+        {
+            "date": 1692629452786,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-21-08-22-error.log",
+            "hash": "0ca118dc552bd7c522ca03a6248a0a385f066d887c8ddec4486620fbd8f288ca"
+        },
+        {
+            "date": 1692630790518,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-21-08-23-error.log",
+            "hash": "a422dd4fd6384a6a6bcdb1dd6e1f362dc27f6e399ced3076df87f0aab8cc5e77"
+        }
+    ],
+    "hashType": "sha256"
+}

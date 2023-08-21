@@ -1,0 +1,17 @@
+Mon Aug 21 2023 23:13:16 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "mahi",
+    email: "araffat@gmail.com",
+    password: "123v456",
+    userType: "CANDIDATE"
+              ~~~~~~~~~~~
+  },
+  include: {
+    candidate: true
+  }
+}
+
+Invalid value for argument `userType`. Expected UserType.

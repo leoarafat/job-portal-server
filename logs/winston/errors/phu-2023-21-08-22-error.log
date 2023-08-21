@@ -1,0 +1,46 @@
+Mon Aug 21 2023 22:50:57 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Yeasin Arafat",
+    email: "arafat@gmail.com",
+    password: "123456",
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Mon Aug 21 2023 22:51:12 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Yeasin Arafat",
+    email: "arafat@gmail.com",
+    password: "123456",
+    userType: "candidate"
+              ~~~~~~~~~~~
+  }
+}
+
+Invalid value for argument `userType`. Expected UserType.
+Mon Aug 21 2023 22:52:12 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Yeasin Arafat",
+    email: "arafat@gmail.com",
+    password: "123456",
+    userType: "CANDIDAT"
+              ~~~~~~~~~~
+  }
+}
+
+Invalid value for argument `userType`. Expected UserType.
+Mon Aug 21 2023 22:55:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+
+Unique constraint failed on the fields: (`email`)
