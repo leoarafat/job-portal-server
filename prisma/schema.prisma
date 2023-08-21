@@ -1,0 +1,159 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String        @id @default(uuid())
+  email       String        @unique
+  password    String
+  fullName    String
+  userType    UserType
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  savedJob    SavedJob[]
+  application Application[]
+  employee    Employee[]
+  candidate   Candidate[]
+
+  @@map("users")
+}
+
+model SavedJob {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  job       Job      @relation(fields: [jobId], references: [id])
+  jobId     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("savedJobs")
+}
+
+model Application {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id])
+  status    String // Submitted, In Review, Accepted, Rejected, etc.
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("applications")
+}
+
+model Employee {
+  id                   String   @id @default(uuid())
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id])
+  companyName          String
+  phoneNumber          String
+  email                String
+  website              String
+  facebookUrl          String?
+  twitterUrl           String?
+  linkedinUrl          String?
+  companySize          String
+  tin                  String?
+  tradeLicenseNumber   String?
+  companyLogo          String?
+  address              String
+  description          String
+  recruiterName        String
+  recruiterDesignation String
+  recruiterNumber      String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  Job                  Job[]
+
+  @@map("employes")
+}
+
+model Candidate {
+  id               String           @id @default(uuid())
+  userId           String
+  user             User             @relation(fields: [userId], references: [id])
+  firstName        String
+  lastName         String
+  gender           String
+  nidNumber        String
+  mobileNumber     String
+  email            String
+  portfolioUrl     String?
+  facebookUrl      String?
+  linkedinUrl      String?
+  jobType          String
+  presentAddress   String
+  permanentAddress String
+  careerObjective  String
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  Education        Education[]
+  WorkExperience   WorkExperience[]
+
+  @@map("candidates")
+}
+
+model Education {
+  id             String    @id @default(uuid())
+  candidateId    String
+  candidate      Candidate @relation(fields: [candidateId], references: [id])
+  degree         String
+  institution    String
+  graduationYear Int
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@map("educations")
+}
+
+model WorkExperience {
+  id          String    @id @default(uuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  position    String
+  company     String
+  startDate   DateTime
+  endDate     DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("worksExpericences")
+}
+
+model Job {
+  id                  String        @id @default(uuid())
+  title               String
+  positionSummery     String
+  jobResponsibilities String
+  qualification       String
+  requiredSkill       String
+  education           String
+  benefits            String
+  location            String
+  companyName         String
+  salary              String
+  vacancy             Int
+  jobCategory         String
+  deadline            DateTime
+  type                String // Full-time, Part-time, Remote, etc.
+  emoloyeeId          String
+  employee            Employee      @relation(fields: [emoloyeeId], references: [id])
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  SavedJob            SavedJob[]
+  Application         Application[]
+
+  @@map("jobs")
+}
+
+enum UserType {
+  CANDIDATE
+  EMPLOYEE
+}
