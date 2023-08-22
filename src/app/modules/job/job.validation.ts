@@ -34,16 +34,16 @@ const create = z.object({
     vacancy: z.number({
       required_error: 'vacancy id is required',
     }),
-    jobCategory: z.number({
+    jobCategory: z.string({
       required_error: 'job Category id is required',
     }),
-    deadline: z.number({
+    deadline: z.string({
       required_error: 'deadline id is required',
     }),
-    type: z.number({
+    type: z.string({
       required_error: 'Job type id is required',
     }),
-    employeeId: z.number({
+    employeeId: z.string({
       required_error: 'employee id id is required',
     }),
   }),
@@ -61,7 +61,7 @@ const update = z.object({
     location: z.string().optional(),
     companyName: z.string().optional(),
     salary: z.string().optional(),
-    vacancy: z.string().optional(),
+    vacancy: z.number().optional(),
     jobCategory: z.string().optional(),
     deadline: z.string().optional(),
     type: z.string().optional(),

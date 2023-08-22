@@ -93,7 +93,7 @@ model Job {
   salary              String
   vacancy             Int
   jobCategory         String
-  deadline            DateTime
+  deadline            String
   type                String // Full-time, Part-time, Remote, etc.
   employeeId          String
   employee            Employee      @relation(fields: [employeeId], references: [id])

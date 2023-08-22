@@ -111,3 +111,102 @@ Invalid `prisma.candidate.update()` invocation:
 }
 
 Unknown argument `companyLogo`. Available options are listed in green.
+Tue Aug 22 2023 18:29:19 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.job.create()` invocation:
+
+{
+  data: {
+    title: "Job Title Here",
+    positionSummery: "Position Summary Here",
+    jobResponsibilities: "Job Responsibilities Here",
+    qualification: "Qualifications Here",
+    requiredSkill: "Required Skills Here",
+    education: "Education Here",
+    benefits: "Benefits Here (optional)",
+    location: "Location Here",
+    companyName: "Company Name Here",
+    salary: "Salary Here",
+    vacancy: 5,
+    jobCategory: 1,
+                 ~
+    deadline: 2,
+    type: 2,
+    employeeId: "c7864876-d60a-4051-9047-b1193adc882a"
+  },
+  include: {
+    employee: true
+  }
+}
+
+Argument `jobCategory`: Invalid value provided. Expected String, provided Int.
+Tue Aug 22 2023 18:31:39 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.job.create()` invocation:
+
+{
+  data: {
+    title: "Job Title Here",
+    positionSummery: "Position Summary Here",
+    jobResponsibilities: "Job Responsibilities Here",
+    qualification: "Qualifications Here",
+    requiredSkill: "Required Skills Here",
+    education: "Education Here",
+    benefits: "Benefits Here (optional)",
+    location: "Location Here",
+    companyName: "Company Name Here",
+    salary: "Salary Here",
+    vacancy: 5,
+    jobCategory: "Web Dev",
+    deadline: "jun 10",
+              ~~~~~~~~
+    type: "Dev",
+    employeeId: "c7864876-d60a-4051-9047-b1193adc882a"
+  },
+  include: {
+    employee: true
+  }
+}
+
+Invalid value for argument `deadline`: input contains invalid characters. Expected ISO-8601 DateTime.
+Tue Aug 22 2023 18:35:2 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.job.create()` invocation:
+
+
+Foreign key constraint failed on the field: `jobs_employeeId_fkey (index)`
+Tue Aug 22 2023 18:35:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.job.create()` invocation:
+
+{
+  data: {
+    title: "Job Title Here",
+    positionSummery: "Position Summary Here",
+    jobResponsibilities: "Job Responsibilities Here",
+    qualification: "Qualifications Here",
+    requiredSkill: "Required Skills Here",
+    education: "Education Here",
+    benefits: "Benefits Here (optional)",
+    location: "Location Here",
+    companyName: "Company Name Here",
+    salary: "Salary Here",
+    vacancy: 5,
+    jobCategory: "Web Dev",
+    deadline: "2023-10-31T23:59:59Z",
+    type: "Dev",
+    employee: "c7864876-d60a-4051-9047-b1193adc882a"
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  },
+  include: {
+    employee: true
+  }
+}
+
+Argument `employee`: Invalid value provided. Expected EmployeeCreateNestedOneWithoutJobInput, provided String.
+Tue Aug 22 2023 18:36:1 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.job.create()` invocation:
+
+
+Foreign key constraint failed on the field: `jobs_employeeId_fkey (index)`
+Tue Aug 22 2023 18:37:21 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.job.create()` invocation:
+
+
+Foreign key constraint failed on the field: `jobs_employeeId_fkey (index)`
