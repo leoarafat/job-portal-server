@@ -1,0 +1,45 @@
+import { z } from 'zod';
+
+const create = z.object({
+  body: z.object({
+    companyName: z.string({
+      required_error: 'Name  is required',
+    }),
+
+    email: z.string({
+      required_error: 'Email is required',
+    }),
+    password: z.string({
+      required_error: 'Password id is required',
+    }),
+    role: z.string({
+      required_error: 'Role id is required',
+    }),
+  }),
+});
+
+const update = z.object({
+  body: z.object({
+    companyName: z.string().optional(),
+    phoneNumber: z.string().optional(),
+    email: z.string().optional(),
+    website: z.string().optional(),
+    facebookUrl: z.string().optional(),
+    twitterUrl: z.string().optional(),
+    linkedinUrl: z.string().optional(),
+    companySize: z.string().optional(),
+    tin: z.string().optional(),
+    tradeLicenseNumber: z.string().optional(),
+    companyLogo: z.string().optional(),
+    address: z.string().optional(),
+    description: z.string().optional(),
+    recruiterName: z.string().optional(),
+    recruiterDesignation: z.string().optional(),
+    recruiterNumber: z.string().optional(),
+  }),
+});
+
+export const EmployeeValidation = {
+  create,
+  update,
+};

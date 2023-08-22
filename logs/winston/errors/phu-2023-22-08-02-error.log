@@ -1,0 +1,603 @@
+Tue Aug 22 2023 2:13:13 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Purni",
+    email: "purni@gmail.com",
+    password: "$2b$10$WDR4HRU4TfzlphAcnyiwVOZTG5CYNjnyrdyvSzMPAMkBgIuQ2ruyi",
+    candidate: {
+      create: {}
+    },
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Tue Aug 22 2023 2:14:32 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Purni",
+    email: "purni@gmail.com",
+    password: "$2b$10$nbRc4YjbImNVIRumk373m.xp//w5gyPnExeMwYsQ7d8/ndPea1gW.",
+    candidate: {
+      create: {}
+    },
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Tue Aug 22 2023 2:19:54 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Purni",
+    email: "purni@gmail.com",
+    password: "$2b$10$YFThNwb3D.cBZnEDFIGTbeTLSM4XmPzY72qSzh.bb75aP6E46rd6K",
+    candidate: {
+      create: {}
+    },
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Tue Aug 22 2023 2:20:31 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Purni",
+    email: "purni@gmail.com",
+    password: "$2b$10$fXNwF7SMfe8LmMwle2r5m.Pz5I.odWvuOP4ZN73NMG7o1F/dts8Oe",
+    employee: {
+      create: {}
+    },
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Tue Aug 22 2023 2:21:30 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "userType"
+    ],
+    "message": "Role id is required"
+  }
+]
+Tue Aug 22 2023 2:21:36 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Purni",
+    email: "purni@gmail.com",
+    password: "$2b$10$Fw4zNiOepyIpY6ZNTY15WeKXCIvjBUNSRWfT6.T1BN5/C8.0Gz35q",
+    employee: {
+      create: {}
+    },
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Tue Aug 22 2023 2:21:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    fullName: "Purni",
+    email: "purni@gmail.com",
+    password: "$2b$10$gljTC7p6mQ8mN7xeDKIQEumHur5Rn791NM./EWfaI5D37GS4aN/5C",
+    candidate: {
+      create: {}
+    },
++   userType: UserType
+  }
+}
+
+Argument `userType` is missing.
+Tue Aug 22 2023 2:40:6 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b",
+    ~~~~~~
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ],
+?   id?: String | StringFieldUpdateOperationsInput,
+?   facebookUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   user?: UserUpdateOneRequiredWithoutCandidateNestedInput,
+?   educations?: EducationUpdateManyWithoutCandidateNestedInput,
+?   workExperiences?: WorkExperienceUpdateManyWithoutCandidateNestedInput
+  }
+}
+
+Unknown argument `userId`. Did you mean `user`? Available options are listed in green.
+Tue Aug 22 2023 2:40:38 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+    ~~~~~~~~~
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ],
+?   id?: String | StringFieldUpdateOperationsInput,
+?   facebookUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   user?: UserUpdateOneRequiredWithoutCandidateNestedInput,
+?   educations?: EducationUpdateManyWithoutCandidateNestedInput,
+?   workExperiences?: WorkExperienceUpdateManyWithoutCandidateNestedInput
+  }
+}
+
+Unknown argument `Education`. Did you mean `educations`? Available options are listed in green.
+Tue Aug 22 2023 2:41:8 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    educations: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `educations`: Invalid value provided. Expected EducationUpdateManyWithoutCandidateNestedInput or EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 2:41:40 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    education: [
+    ~~~~~~~~~
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ],
+?   id?: String | StringFieldUpdateOperationsInput,
+?   facebookUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   user?: UserUpdateOneRequiredWithoutCandidateNestedInput,
+?   educations?: EducationUpdateManyWithoutCandidateNestedInput,
+?   workExperiences?: WorkExperienceUpdateManyWithoutCandidateNestedInput
+  }
+}
+
+Unknown argument `education`. Did you mean `educations`? Available options are listed in green.
+Tue Aug 22 2023 2:42:2 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    educations: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `educations`: Invalid value provided. Expected EducationUpdateManyWithoutCandidateNestedInput or EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 2:43:50 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Tue Aug 22 2023 2:44:54 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Tue Aug 22 2023 2:47:33 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Tue Aug 22 2023 2:48:11 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b",
+    ~~~~~~
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ],
+?   id?: String | StringFieldUpdateOperationsInput,
+?   facebookUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   user?: UserUpdateOneRequiredWithoutCandidateNestedInput,
+?   educations?: EducationUpdateManyWithoutCandidateNestedInput,
+?   workExperiences?: WorkExperienceUpdateManyWithoutCandidateNestedInput
+  }
+}
+
+Unknown argument `userId`. Did you mean `user`? Available options are listed in green.
+Tue Aug 22 2023 2:48:21 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    user: "2e125ab8-39b4-47b2-82ed-ce56b996284b",
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `user`: Invalid value provided. Expected UserUpdateOneRequiredWithoutCandidateNestedInput, provided String.
+Tue Aug 22 2023 2:49:23 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+    ~~~~~~~~~
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ],
+?   id?: String | StringFieldUpdateOperationsInput,
+?   facebookUrl?: String | NullableStringFieldUpdateOperationsInput | Null,
+?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+?   user?: UserUpdateOneRequiredWithoutCandidateNestedInput,
+?   educations?: EducationUpdateManyWithoutCandidateNestedInput,
+?   workExperiences?: WorkExperienceUpdateManyWithoutCandidateNestedInput
+  }
+}
+
+Unknown argument `Education`. Did you mean `educations`? Available options are listed in green.
+Tue Aug 22 2023 2:49:43 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    educations: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `educations`: Invalid value provided. Expected EducationUpdateManyWithoutCandidateNestedInput or EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 2:50:28 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    educations: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022,
+        candidate: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `educations`: Invalid value provided. Expected EducationUpdateManyWithoutCandidateNestedInput or EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 2:50:46 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    userId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+  },
+  data: {
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    educations: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022,
+        candidateId: "2e125ab8-39b4-47b2-82ed-ce56b996284b"
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `educations`: Invalid value provided. Expected EducationUpdateManyWithoutCandidateNestedInput or EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).

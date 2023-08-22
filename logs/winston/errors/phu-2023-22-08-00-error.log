@@ -1,0 +1,202 @@
+Tue Aug 22 2023 0:3:12 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    id: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c"
+  },
+  data: {
+    userId: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c",
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  },
+  include: {
+    Education: true,
+    WorkExperience: true
+  }
+}
+
+Argument `Education`: Invalid value provided. Expected EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 0:6:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+Can't reach database server at `containers-us-west-177.railway.app`:`7038`
+
+Please make sure your database server is running at `containers-us-west-177.railway.app`:`7038`.
+Tue Aug 22 2023 0:7:4 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+Can't reach database server at `containers-us-west-177.railway.app`:`7038`
+
+Please make sure your database server is running at `containers-us-west-177.railway.app`:`7038`.
+Tue Aug 22 2023 0:7:59 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+Can't reach database server at `containers-us-west-177.railway.app`:`7038`
+
+Please make sure your database server is running at `containers-us-west-177.railway.app`:`7038`.
+Tue Aug 22 2023 0:9:30 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    id: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c"
+  },
+  data: {
+    userId: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c",
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `Education`: Invalid value provided. Expected EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 0:11:21 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+Tue Aug 22 2023 0:11:53 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    id: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c"
+  },
+  data: {
+    userId: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c",
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: [
+      {
+        degree: "Bachelor of Science",
+        institution: "University of Example",
+        graduationYear: 2022
+      }
+    ],
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    WorkExperience: [
+      {
+        position: "Software Developer",
+        company: "Tech Company",
+        startDate: "2022-01-01",
+        endDate: "2023-01-01"
+      }
+    ]
+  }
+}
+
+Argument `Education`: Invalid value provided. Expected EducationUncheckedUpdateManyWithoutCandidateNestedInput, provided (Object).
+Tue Aug 22 2023 0:14:0 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+{
+  where: {
+    id: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c"
+  },
+  data: {
+    userId: "296dc306-bcb6-4d3d-be9b-3e9468b7de1c",
+    firstName: "John",
+    lastName: "Doe",
+    gender: "Male",
+    nidNumber: "1234567890123456",
+    mobileNumber: "123-456-7890",
+    email: "john.doe@example.com",
+    portfolioUrl: "https://portfolio.example.com",
+    linkedinUrl: "https://linkedin.com/in/johndoe",
+    jobType: "Software Engineer",
+    presentAddress: "123 Main St, City",
+    permanentAddress: "456 Park Ave, Town",
+    careerObjective: "To excel in software development",
+    Education: {
+      create: [
+        {
+          degree: "Bachelor of Science",
+          institution: "University of Example",
+          graduationYear: 2022
+        }
+      ]
+    },
+    WorkExperience: {
+      create: [
+        {
+          position: "Software Developer",
+          company: "Tech Company",
+          startDate: "2022-01-01",
+          endDate: "2023-01-01"
+        }
+      ]
+    }
+  }
+}
+
+Invalid value for argument `startDate`: premature end of input. Expected ISO-8601 DateTime.
+Tue Aug 22 2023 0:14:17 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.candidate.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.

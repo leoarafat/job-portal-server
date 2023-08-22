@@ -7,124 +7,76 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id          String        @id @default(uuid())
-  email       String        @unique
-  password    String
-  fullName    String
-  userType    UserType
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  savedJob    SavedJob[]
-  application Application[]
-  employee    Employee[]
-  candidate   Candidate[]
+// model User {
+//   id           String        @id @default(uuid())
+//   email        String        @unique
+//   password     String
+//   fullName     String
+//   userType     UserType
+//   createdAt    DateTime      @default(now())
+//   updatedAt    DateTime      @updatedAt
+//   candidate    Candidate?
+//   employee     Employee?
+//   jobs         Job[]
+//   savedJobs    SavedJob[]
+//   applications Application[]
 
-  @@map("users")
-}
+//   @@map("users")
+// }
 
-model SavedJob {
-  id        String   @id @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-  job       Job      @relation(fields: [jobId], references: [id])
-  jobId     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Candidate {
+  id String @id @default(uuid())
 
-  @@map("savedJobs")
-}
+  firstName        String
+  lastName         String
+  gender           String?
+  nidNumber        String?
+  mobileNumber     String?
+  email            String        @unique
+  password         String        @unique
+  role             UserType
+  portfolioUrl     String?
+  facebookUrl      String?
+  linkedinUrl      String?
+  jobType          String?
+  presentAddress   String?
+  permanentAddress String?
+  careerObjective  String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  educations       String?
+  experience       String?
+  Application      Application[]
+  SavedJob         SavedJob[]
 
-model Application {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  jobId     String
-  job       Job      @relation(fields: [jobId], references: [id])
-  status    String // Submitted, In Review, Accepted, Rejected, etc.
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("applications")
+  @@map("candidates")
 }
 
 model Employee {
   id                   String   @id @default(uuid())
-  userId               String
-  user                 User     @relation(fields: [userId], references: [id])
   companyName          String
-  phoneNumber          String
-  email                String
-  website              String
+  phoneNumber          String?
+  email                String   @unique
+  password             String   @unique
+  role                 UserType
+  website              String?
   facebookUrl          String?
   twitterUrl           String?
   linkedinUrl          String?
-  companySize          String
+  companySize          String?
   tin                  String?
   tradeLicenseNumber   String?
   companyLogo          String?
-  address              String
-  description          String
-  recruiterName        String
-  recruiterDesignation String
-  recruiterNumber      String
+  address              String?
+  description          String?
+  recruiterName        String?
+  recruiterDesignation String?
+  recruiterNumber      String?
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
   Job                  Job[]
 
   @@map("employes")
-}
-
-model Candidate {
-  id               String           @id @default(uuid())
-  userId           String
-  user             User             @relation(fields: [userId], references: [id])
-  firstName        String
-  lastName         String
-  gender           String
-  nidNumber        String
-  mobileNumber     String
-  email            String
-  portfolioUrl     String?
-  facebookUrl      String?
-  linkedinUrl      String?
-  jobType          String
-  presentAddress   String
-  permanentAddress String
-  careerObjective  String
-  createdAt        DateTime         @default(now())
-  updatedAt        DateTime         @updatedAt
-  Education        Education[]
-  WorkExperience   WorkExperience[]
-
-  @@map("candidates")
-}
-
-model Education {
-  id             String    @id @default(uuid())
-  candidateId    String
-  candidate      Candidate @relation(fields: [candidateId], references: [id])
-  degree         String
-  institution    String
-  graduationYear Int
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-
-  @@map("educations")
-}
-
-model WorkExperience {
-  id          String    @id @default(uuid())
-  candidateId String
-  candidate   Candidate @relation(fields: [candidateId], references: [id])
-  position    String
-  company     String
-  startDate   DateTime
-  endDate     DateTime
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@map("worksExpericences")
 }
 
 model Job {
@@ -143,14 +95,40 @@ model Job {
   jobCategory         String
   deadline            DateTime
   type                String // Full-time, Part-time, Remote, etc.
-  emoloyeeId          String
-  employee            Employee      @relation(fields: [emoloyeeId], references: [id])
+  employeeId          String
+  employee            Employee      @relation(fields: [employeeId], references: [id])
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
-  SavedJob            SavedJob[]
   Application         Application[]
+  SavedJob            SavedJob[]
 
   @@map("jobs")
+}
+
+model SavedJob {
+  id          String    @id @default(uuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  jobId       String
+  job         Job       @relation(fields: [jobId], references: [id])
+
+  @@map("savedjob")
+}
+
+model Application {
+  id String @id @default(uuid())
+
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  jobId       String
+  job         Job       @relation(fields: [jobId], references: [id])
+  status      String // Submitted, In Review, Accepted, Rejected, etc.
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("applications")
 }
 
 enum UserType {
