@@ -26,7 +26,11 @@ const insertIntoDB = async (payload: Job) => {
   }
 };
 const getAllFromDB = async (): Promise<Job[]> => {
-  const result = await prisma.job.findMany();
+  const result = await prisma.job.findMany({
+    include: {
+      employee: true,
+    },
+  });
   return result;
 };
 const getById = async (id: string): Promise<Job | null> => {
@@ -34,11 +38,41 @@ const getById = async (id: string): Promise<Job | null> => {
     where: {
       id,
     },
+    include: {
+      employee: true,
+    },
   });
   return result;
 };
+const updateJob = async (id: string, payload: Partial<Job>): Promise<Job> => {
+  const result = await prisma.job.update({
+    where: {
+      id,
+    },
+    data: payload,
+    include: {
+      employee: true,
+    },
+  });
+  return result;
+};
+
+const deleteJob = async (id: string): Promise<Job> => {
+  const result = await prisma.job.delete({
+    where: {
+      id,
+    },
+    include: {
+      employee: true,
+    },
+  });
+  return result;
+};
+
 export const JobService = {
   insertIntoDB,
   getAllFromDB,
   getById,
+  updateJob,
+  deleteJob,
 };

@@ -64,6 +64,16 @@
             "date": 1692702076035,
             "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-22-08-19-error.log",
             "hash": "116e7433ec80ce040c13118bd0e09a92c2079d971dc8b28d7452168d2218af2d"
+        },
+        {
+            "date": 1692705831884,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-22-08-20-error.log",
+            "hash": "5511ed2a095fdc75c329768152a806550b55052b19e6043427793050efca5068"
+        },
+        {
+            "date": 1692713821077,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-22-08-22-error.log",
+            "hash": "5b7ae26951a1a5e4143e6476d42edc3d8dc3ac14bef55e6d9c8501d235961c8d"
         }
     ],
     "hashType": "sha256"

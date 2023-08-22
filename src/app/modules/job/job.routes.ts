@@ -9,4 +9,11 @@ router.post(
   JobController.insertIntoDB
 );
 router.get('/', JobController.getAllFromDB);
+router.get('/:id', JobController.getById);
+router.patch(
+  '/:id',
+  validateRequest(JobValidation.update),
+  JobController.updateJob
+);
+router.delete('/:id', JobController.deleteJob);
 export const JobRoutes = router;
