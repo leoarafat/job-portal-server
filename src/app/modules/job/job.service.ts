@@ -3,7 +3,6 @@ import ApiError from '../../../errors/ApiError';
 import { prisma } from '../../../shared/prisma';
 
 const insertIntoDB = async (payload: Job) => {
-  //   console.log(payload.employeeId);
   const existingEmployee = await prisma.employee.findUnique({
     where: {
       id: payload.employeeId,
@@ -26,7 +25,20 @@ const insertIntoDB = async (payload: Job) => {
     throw new ApiError(404, 'Employee dose not exist');
   }
 };
-
+const getAllFromDB = async (): Promise<Job[]> => {
+  const result = await prisma.job.findMany();
+  return result;
+};
+const getById = async (id: string): Promise<Job | null> => {
+  const result = await prisma.job.findUnique({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
 export const JobService = {
   insertIntoDB,
+  getAllFromDB,
+  getById,
 };

@@ -10,7 +10,7 @@ router.post(
   validateRequest(EmployeeValidation.create),
   EmployeeController.insertIntoDB
 );
-router.get('/', EmployeeController.getAllFromDB);
+router.get('', EmployeeController.getAllFromDB);
 router.get('/:id', EmployeeController.getByIdFromDB);
 router.patch(
   '/:id',

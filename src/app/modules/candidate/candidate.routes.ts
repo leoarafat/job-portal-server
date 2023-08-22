@@ -9,8 +9,8 @@ router.post(
   validateRequest(CandidateValidation.create),
   CandidateController.insertIntoDB
 );
-router.get('/', CandidateController.getAllFromDB);
-router.get('/:id', CandidateController.getByIdFromDB);
+router.get('/candidate/', CandidateController.getAllFromDB);
+router.get('/candidate/:id', CandidateController.getByIdFromDB);
 router.patch(
   '/candidate/:id',
   validateRequest(CandidateValidation.update),
