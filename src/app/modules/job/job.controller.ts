@@ -1,4 +1,4 @@
-import { Job } from '@prisma/client';
+import { Application, Job, SavedJob } from '@prisma/client';
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { paginationFields } from '../../../constants/pagination';
@@ -59,10 +59,53 @@ const deleteJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const applyJob = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobService.applyJob(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Applied Job',
+    data: result,
+  });
+});
+const myJob = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await JobService.myJob(id);
+  sendResponse<Application>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'My application retrieved successfully',
+    data: result,
+  });
+});
+const savedJob = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobService.saveJob(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Job Saved',
+    data: result,
+  });
+});
+const getSavedJob = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await JobService.getSavedJob(id);
+  sendResponse<SavedJob>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'My application retrieved successfully',
+    data: result,
+  });
+});
 export const JobController = {
   insertIntoDB,
   getAllFromDB,
   getById,
   updateJob,
   deleteJob,
+  applyJob,
+  myJob,
+  savedJob,
+  getSavedJob,
 };

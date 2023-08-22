@@ -8,8 +8,20 @@ router.post(
   validateRequest(JobValidation.create),
   JobController.insertIntoDB
 );
+router.post(
+  '/apply',
+  validateRequest(JobValidation.apply),
+  JobController.applyJob
+);
+router.post(
+  '/save-job',
+  validateRequest(JobValidation.save),
+  JobController.savedJob
+);
 router.get('/', JobController.getAllFromDB);
 router.get('/:id', JobController.getById);
+router.get('/my-application/:id', JobController.myJob);
+router.get('/saved-job/:id', JobController.getSavedJob);
 router.patch(
   '/:id',
   validateRequest(JobValidation.update),

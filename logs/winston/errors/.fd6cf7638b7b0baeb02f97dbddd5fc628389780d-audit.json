@@ -79,6 +79,11 @@
             "date": 1692716493498,
             "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-22-08-23-error.log",
             "hash": "3afcad81c2cc9f8bdac5efdd5f60bddd0708491994c09c4bd2b962dac0778e2d"
+        },
+        {
+            "date": 1692721074007,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\errors\\phu-2023-23-08-00-error.log",
+            "hash": "24082b9fd69472b58944ad783e01f3ceb7ad0dc17de5c7c5d45898028f71a00a"
         }
     ],
     "hashType": "sha256"

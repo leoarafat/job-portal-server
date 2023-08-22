@@ -16,7 +16,7 @@ const moduleRoutes = [
     routes: employeeRoutes,
   },
   {
-    path: '/job',
+    path: '/jobs',
     routes: JobRoutes,
   },
   // {

@@ -48,6 +48,29 @@ const create = z.object({
     }),
   }),
 });
+const apply = z.object({
+  body: z.object({
+    candidateId: z.string({
+      required_error: 'Candidate id is required',
+    }),
+    jobId: z.string({
+      required_error: 'Candidate id is required',
+    }),
+    status: z.string({
+      required_error: 'status is required',
+    }),
+  }),
+});
+const save = z.object({
+  body: z.object({
+    candidateId: z.string({
+      required_error: 'Candidate id is required',
+    }),
+    jobId: z.string({
+      required_error: 'Candidate id is required',
+    }),
+  }),
+});
 
 const update = z.object({
   body: z.object({
@@ -72,4 +95,6 @@ const update = z.object({
 export const JobValidation = {
   create,
   update,
+  apply,
+  save,
 };

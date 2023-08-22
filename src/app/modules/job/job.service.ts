@@ -1,4 +1,4 @@
-import { Job, Prisma } from '@prisma/client';
+import { Application, Job, Prisma, SavedJob } from '@prisma/client';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
@@ -6,7 +6,7 @@ import { IPaginationOptions } from '../../../interfaces/pagination';
 import { prisma } from '../../../shared/prisma';
 import { jobSearchableFields } from './job.constants';
 import { IJobFilterRequest } from './job.interface';
-
+//!create job
 const insertIntoDB = async (payload: Job) => {
   const existingEmployee = await prisma.employee.findUnique({
     where: {
@@ -30,7 +30,7 @@ const insertIntoDB = async (payload: Job) => {
     throw new ApiError(404, 'Employee dose not exist');
   }
 };
-
+//! get all job
 const getAllFromDB = async (
   filters: IJobFilterRequest,
   paginationOptions: IPaginationOptions
@@ -89,7 +89,7 @@ const getAllFromDB = async (
     data: result,
   };
 };
-
+//! get job by id
 const getById = async (id: string): Promise<Job | null> => {
   const result = await prisma.job.findUnique({
     where: {
@@ -101,6 +101,7 @@ const getById = async (id: string): Promise<Job | null> => {
   });
   return result;
 };
+//! update job
 const updateJob = async (id: string, payload: Partial<Job>): Promise<Job> => {
   const result = await prisma.job.update({
     where: {
@@ -113,7 +114,7 @@ const updateJob = async (id: string, payload: Partial<Job>): Promise<Job> => {
   });
   return result;
 };
-
+//! delete job
 const deleteJob = async (id: string): Promise<Job> => {
   const result = await prisma.job.delete({
     where: {
@@ -125,11 +126,62 @@ const deleteJob = async (id: string): Promise<Job> => {
   });
   return result;
 };
-
+//! Apply job
+const applyJob = async (payload: Application): Promise<Application> => {
+  const result = await prisma.application.create({
+    data: payload,
+    include: {
+      candidate: true,
+      job: true,
+    },
+  });
+  return result;
+};
+//! My job list
+const myJob = async (id: string): Promise<Application | null> => {
+  const result = await prisma.application.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      candidate: true,
+      job: true,
+    },
+  });
+  return result;
+};
+//!Job save list
+const saveJob = async (payload: SavedJob): Promise<SavedJob> => {
+  const result = await prisma.savedJob.create({
+    data: payload,
+    include: {
+      candidate: true,
+      job: true,
+    },
+  });
+  return result;
+};
+//! Get save job
+const getSavedJob = async (id: string): Promise<SavedJob | null> => {
+  const result = await prisma.savedJob.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      candidate: true,
+      job: true,
+    },
+  });
+  return result;
+};
 export const JobService = {
   insertIntoDB,
   getAllFromDB,
   getById,
   updateJob,
   deleteJob,
+  applyJob,
+  myJob,
+  saveJob,
+  getSavedJob,
 };

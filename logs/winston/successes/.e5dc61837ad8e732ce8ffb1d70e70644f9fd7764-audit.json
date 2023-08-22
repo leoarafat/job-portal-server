@@ -79,6 +79,11 @@
             "date": 1692716493491,
             "name": "D:\\next-level\\job portal\\server\\logs\\winston\\successes\\phu-2023-22-08-23-success.log",
             "hash": "256fca26fcfcc9ac1c4e892174ab5ee94886e6ff92d9f56dc4600d0a6a03e44e"
+        },
+        {
+            "date": 1692721074000,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\successes\\phu-2023-23-08-00-success.log",
+            "hash": "f48730a3439d19fe486447a05db070adff138f5a77e0ea6171fb002d896b7635"
         }
     ],
     "hashType": "sha256"
