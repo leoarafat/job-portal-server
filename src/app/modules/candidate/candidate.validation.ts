@@ -14,9 +14,6 @@ const create = z.object({
     password: z.string({
       required_error: 'Password id is required',
     }),
-    role: z.string({
-      required_error: 'Role id is required',
-    }),
   }),
 });
 

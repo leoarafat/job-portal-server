@@ -8,6 +8,7 @@ import sendResponse from '../../../shared/sendResponse';
 import { jobFilterableFields } from './job.constants';
 import { JobService } from './job.service';
 
+//!Create Job
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await JobService.insertIntoDB(req.body);
   sendResponse<Job>(res, {
@@ -17,6 +18,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Get All Job
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, jobFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
@@ -29,6 +31,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     data: result.data,
   });
 });
+//!Get Job by id
 const getById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await JobService.getById(id);
@@ -39,6 +42,7 @@ const getById = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Update Job
 const updateJob = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await JobService.updateJob(id, req.body);
@@ -49,6 +53,7 @@ const updateJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Delete Job
 const deleteJob = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await JobService.deleteJob(id);
@@ -59,7 +64,7 @@ const deleteJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-
+//!Apply for Job
 const applyJob = catchAsync(async (req: Request, res: Response) => {
   const result = await JobService.applyJob(req.body);
   sendResponse(res, {
@@ -69,6 +74,7 @@ const applyJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Get my applied Job
 const myJob = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await JobService.myJob(id);
@@ -79,6 +85,7 @@ const myJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Save Job post
 const savedJob = catchAsync(async (req: Request, res: Response) => {
   const result = await JobService.saveJob(req.body);
   sendResponse(res, {
@@ -88,6 +95,7 @@ const savedJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Fet saved Job
 const getSavedJob = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await JobService.getSavedJob(id);
@@ -98,7 +106,7 @@ const getSavedJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-
+//!Comment a Job
 const addedComment = catchAsync(async (req: Request, res: Response) => {
   const result = await JobService.addedComment(req.body);
   sendResponse(res, {

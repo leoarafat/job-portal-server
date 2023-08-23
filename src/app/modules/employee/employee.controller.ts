@@ -5,6 +5,7 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { EmployeeService } from './employee.service';
 
+//!Create employee
 const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
   const result = await EmployeeService.createEmployee(req.body);
   sendResponse<Employee>(res, {
@@ -14,7 +15,7 @@ const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-
+//!Get All employee
 const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
   const result = await EmployeeService.getAllFromDB();
   sendResponse<Employee[]>(res, {
@@ -24,6 +25,7 @@ const getAllFromDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Get employee by id
 const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await EmployeeService.getByIdFromDB(id);
@@ -34,6 +36,7 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Update employee
 const updateEmployee = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
@@ -45,6 +48,7 @@ const updateEmployee = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Delete employee
 const deleteEmployee = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await EmployeeService.deleteEmployee(id);

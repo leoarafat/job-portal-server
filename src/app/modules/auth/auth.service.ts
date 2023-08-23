@@ -4,6 +4,7 @@ import jwt, { Secret } from 'jsonwebtoken';
 import { prisma } from '../../../shared/prisma';
 import { ILoginUser, ILoginUserResponse } from './auth.interface';
 
+//! Login Candidate
 const loginCandidate = async (
   payload: ILoginUser
 ): Promise<ILoginUserResponse> => {
@@ -43,6 +44,7 @@ const loginCandidate = async (
     refreshToken,
   };
 };
+//! Login Employee
 const loginEmployee = async (
   payload: ILoginUser
 ): Promise<ILoginUserResponse> => {

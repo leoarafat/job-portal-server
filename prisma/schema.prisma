@@ -12,13 +12,13 @@ model Candidate {
 
   firstName        String
   lastName         String
-  gender           String?
+  gender           Gender?
   nidNumber        String?
   mobileNumber     String?
   photoUrl         String?
-  email            String        @unique
-  password         String        @unique
-  role             String        @default("Candidate")
+  email            String   @unique
+  password         String   @unique
+  role             String   @default("Candidate")
   portfolioUrl     String?
   facebookUrl      String?
   linkedinUrl      String?
@@ -26,39 +26,39 @@ model Candidate {
   presentAddress   String?
   permanentAddress String?
   careerObjective  String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-  educations       String?
-  experience       String?
-  applications     Application[]
-  savedJobs        SavedJob[]
+
+  educations   String?
+  experience   String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  applications Application[]
+  savedJobs    SavedJob[]
 
   @@map("candidates")
 }
 
 model Employee {
-  id                   String   @id @default(uuid())
+  id                   String       @id @default(uuid())
   companyName          String
   phoneNumber          String?
-  email                String   @unique
-  password             String   @unique
+  email                String       @unique
+  password             String       @unique
   photoUrl             String?
-  role                 String   @default("Employe")
+  role                 String       @default("Employe")
   website              String?
   facebookUrl          String?
   twitterUrl           String?
   linkedinUrl          String?
-  companySize          String?
+  companySize          CompanySize?
   tin                  String?
   tradeLicenseNumber   String?
-  companyLogo          String?
   address              String?
   description          String?
   recruiterName        String?
   recruiterDesignation String?
   recruiterNumber      String?
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
   jobs                 Job[]
 
   @@map("employes")
@@ -73,7 +73,7 @@ model Job {
   requiredSkill       String
   education           String
   benefits            String
-  location            String
+  location            LocationType
   companyName         String
   salary              String
   vacancy             Int
@@ -155,4 +155,27 @@ enum Type {
   FullTime
   PartTime
   Remote
+}
+
+enum LocationType {
+  Dhaka
+  Khulna
+  Chattogram
+  Barishal
+  Mymensingh
+  Rajshahi
+  Rangpur
+  Sylhet
+}
+
+enum CompanySize {
+  Small // Represents 1-50
+  Medium // Represents 51-100
+  Large // Represents 101 and above
+}
+
+enum Gender {
+  Male
+  Female
+  Others
 }

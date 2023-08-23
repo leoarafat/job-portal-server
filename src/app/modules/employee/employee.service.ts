@@ -4,6 +4,7 @@ import cloudinary from '../../../config/cloudinaryConfig';
 import ApiError from '../../../errors/ApiError';
 import { prisma } from '../../../shared/prisma';
 
+//!Create employee
 const createEmployee = async (payload: Employee): Promise<Employee> => {
   if (!payload) {
     throw new ApiError(404, 'Something Went wrong');
@@ -22,12 +23,13 @@ const createEmployee = async (payload: Employee): Promise<Employee> => {
 
   return result;
 };
-
+//!Get All employee
 const getAllFromDB = async (): Promise<Employee[]> => {
   const result = await prisma.employee.findMany();
 
   return result;
 };
+//!Get employee by id
 const getByIdFromDB = async (id: string): Promise<Employee | null> => {
   const result = await prisma.employee.findUnique({
     where: {
@@ -56,6 +58,7 @@ const updateEmployeeProfile = async (
 
   return result;
 };
+//!Delete employee
 const deleteEmployee = async (id: string): Promise<Employee> => {
   const result = await prisma.employee.delete({
     where: {

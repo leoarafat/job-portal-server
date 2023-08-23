@@ -5,6 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import { ILoginUserResponse } from './auth.interface';
 import { AuthService } from './auth.service';
 
+//! Login Candidate
 const loginCandidate = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
   const result = await AuthService.loginCandidate(loginData);
@@ -22,6 +23,7 @@ const loginCandidate = catchAsync(async (req: Request, res: Response) => {
     data: others,
   });
 });
+//! Login Employee
 const loginEmployee = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
   const result = await AuthService.loginEmployee(loginData);

@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import cloudinary from '../../../config/cloudinaryConfig';
 import ApiError from '../../../errors/ApiError';
 import { prisma } from '../../../shared/prisma';
-
+//!Create Candidate
 const createCandidate = async (payload: Candidate): Promise<Candidate> => {
   if (!payload) {
     throw new ApiError(404, 'Something Went wrong');
@@ -23,12 +23,13 @@ const createCandidate = async (payload: Candidate): Promise<Candidate> => {
 
   return result;
 };
-
+//!Get All Candidate
 const getAllFromDB = async (): Promise<Candidate[]> => {
   const result = await prisma.candidate.findMany();
 
   return result;
 };
+//!Get Candidate by id
 const getByIdFromDB = async (id: string): Promise<Candidate | null> => {
   const result = await prisma.candidate.findUnique({
     where: {
@@ -57,6 +58,7 @@ const updateCandidateProfile = async (
 
   return result;
 };
+//!Delete Candidate
 const deleteCandidate = async (id: string): Promise<Candidate> => {
   const result = await prisma.candidate.delete({
     where: {
