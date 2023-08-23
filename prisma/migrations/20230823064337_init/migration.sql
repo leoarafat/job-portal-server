@@ -15,6 +15,7 @@ CREATE TABLE "candidates" (
     "gender" TEXT,
     "nidNumber" TEXT,
     "mobileNumber" TEXT,
+    "photoUrl" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "role" TEXT NOT NULL DEFAULT 'Candidate',
@@ -40,6 +41,7 @@ CREATE TABLE "employes" (
     "phoneNumber" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "photoUrl" TEXT,
     "role" TEXT NOT NULL DEFAULT 'Employe',
     "website" TEXT,
     "facebookUrl" TEXT,
@@ -85,14 +87,14 @@ CREATE TABLE "jobs" (
 );
 
 -- CreateTable
-CREATE TABLE "Comment" (
+CREATE TABLE "comments" (
     "id" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "jobId" TEXT NOT NULL,
 
-    CONSTRAINT "Comment_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "comments_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -133,7 +135,7 @@ CREATE UNIQUE INDEX "employes_password_key" ON "employes"("password");
 ALTER TABLE "jobs" ADD CONSTRAINT "jobs_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "employes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Comment" ADD CONSTRAINT "Comment_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "jobs"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "comments" ADD CONSTRAINT "comments_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "jobs"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "savedjob" ADD CONSTRAINT "savedjob_candidateId_fkey" FOREIGN KEY ("candidateId") REFERENCES "candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

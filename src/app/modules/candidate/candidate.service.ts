@@ -1,5 +1,7 @@
 import { Candidate } from '@prisma/client';
 import bcrypt from 'bcrypt';
+
+import cloudinary from '../../../config/cloudinaryConfig';
 import ApiError from '../../../errors/ApiError';
 import { prisma } from '../../../shared/prisma';
 
@@ -36,16 +38,23 @@ const getByIdFromDB = async (id: string): Promise<Candidate | null> => {
   return result;
 };
 
+//!Update with photo
 const updateCandidateProfile = async (
   id: string,
   payload: Partial<Candidate>
 ) => {
+  if (payload.photoUrl) {
+    const uploadedImage = await cloudinary.uploader.upload(payload.photoUrl);
+
+    payload.photoUrl = uploadedImage.secure_url;
+  }
+  delete payload.photoUrl;
+
   const result = await prisma.candidate.update({
-    where: {
-      id,
-    },
+    where: { id },
     data: payload,
   });
+
   return result;
 };
 const deleteCandidate = async (id: string): Promise<Candidate> => {
