@@ -1,5 +1,6 @@
 import express from 'express';
 
+import { AuthRoutes } from '../modules/auth/auth.routes';
 import { CandidateRoutes } from '../modules/candidate/candidate.routes';
 import { employeeRoutes } from '../modules/employee/employee.routes';
 import { JobRoutes } from '../modules/job/job.routes';
@@ -19,14 +20,10 @@ const moduleRoutes = [
     path: '/jobs',
     routes: JobRoutes,
   },
-  // {
-  //   path: '/login',
-  //   routes: UserRoutes,
-  // },
-  // {
-  //   path: '/refresh-token',
-  //   routes: UserRoutes,
-  // },
+  {
+    path: '/auth',
+    routes: AuthRoutes,
+  },
 ];
 
 moduleRoutes.forEach(route => router.use(route.path, route.routes));

@@ -98,6 +98,16 @@ const getSavedJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+
+const addedComment = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobService.addedComment(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Comment added',
+    data: result,
+  });
+});
 export const JobController = {
   insertIntoDB,
   getAllFromDB,
@@ -108,4 +118,5 @@ export const JobController = {
   myJob,
   savedJob,
   getSavedJob,
+  addedComment,
 };

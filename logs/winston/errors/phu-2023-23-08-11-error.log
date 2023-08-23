@@ -1,0 +1,23 @@
+Wed Aug 23 2023 11:49:48 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Candidate has already applied to this job.
+Wed Aug 23 2023 11:50:42 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Candidate has already applied to this job.
+Wed Aug 23 2023 11:55:32 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ 
+Invalid `prisma.savedJob.create()` invocation:
+
+{
+  data: {
+    candidateId: "ed833d18-13de-4423-af55-f05a0649052f",
+    jobId: "249c04b3-6569-472e-a270-62291a6e670e",
+    status: "Submited",
+    ~~~~~~
+?   id?: String,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  },
+  include: {
+    candidate: true,
+    job: true
+  }
+}
+
+Unknown argument `status`. Available options are listed in green.
+Wed Aug 23 2023 11:56:6 } [PH] error: 🐱‍🏍 globalErrorHandler ~~ Already saved this job.

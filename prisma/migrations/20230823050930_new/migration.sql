@@ -1,5 +1,11 @@
 -- CreateEnum
-CREATE TYPE "UserType" AS ENUM ('Candidate', 'Employee');
+CREATE TYPE "JobType" AS ENUM ('FullTime', 'Internship', 'PartTime');
+
+-- CreateEnum
+CREATE TYPE "JobCategory" AS ENUM ('SoftwareDevelopment', 'WebDevelopment', 'DataScience', 'NetworkAdministration', 'CyberSecurity', 'DatabaseAdministration', 'DevOps', 'CloudComputing', 'ITConsulting', 'SystemAnalysis', 'UIUXDesign', 'QualityAssurance', 'ITSupport', 'BusinessIntelligence', 'MobileAppDevelopment');
+
+-- CreateEnum
+CREATE TYPE "Type" AS ENUM ('FullTime', 'PartTime', 'Remote');
 
 -- CreateTable
 CREATE TABLE "candidates" (
@@ -11,11 +17,11 @@ CREATE TABLE "candidates" (
     "mobileNumber" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "UserType" NOT NULL,
+    "role" TEXT NOT NULL DEFAULT 'Candidate',
     "portfolioUrl" TEXT,
     "facebookUrl" TEXT,
     "linkedinUrl" TEXT,
-    "jobType" TEXT,
+    "jobType" "JobType",
     "presentAddress" TEXT,
     "permanentAddress" TEXT,
     "careerObjective" TEXT,
@@ -34,6 +40,7 @@ CREATE TABLE "employes" (
     "phoneNumber" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL DEFAULT 'Employe',
     "website" TEXT,
     "facebookUrl" TEXT,
     "twitterUrl" TEXT,
@@ -67,14 +74,25 @@ CREATE TABLE "jobs" (
     "companyName" TEXT NOT NULL,
     "salary" TEXT NOT NULL,
     "vacancy" INTEGER NOT NULL,
-    "jobCategory" TEXT NOT NULL,
-    "deadline" TIMESTAMP(3) NOT NULL,
-    "type" TEXT NOT NULL,
+    "jobCategory" "JobCategory" NOT NULL,
+    "deadline" TEXT NOT NULL,
+    "type" "Type" NOT NULL,
     "employeeId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "jobs_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Comment" (
+    "id" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "jobId" TEXT NOT NULL,
+
+    CONSTRAINT "Comment_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -93,7 +111,6 @@ CREATE TABLE "applications" (
     "id" TEXT NOT NULL,
     "candidateId" TEXT NOT NULL,
     "jobId" TEXT NOT NULL,
-    "status" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -114,6 +131,9 @@ CREATE UNIQUE INDEX "employes_password_key" ON "employes"("password");
 
 -- AddForeignKey
 ALTER TABLE "jobs" ADD CONSTRAINT "jobs_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "employes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Comment" ADD CONSTRAINT "Comment_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "jobs"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "savedjob" ADD CONSTRAINT "savedjob_candidateId_fkey" FOREIGN KEY ("candidateId") REFERENCES "candidates"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

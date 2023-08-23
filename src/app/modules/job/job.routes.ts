@@ -8,6 +8,7 @@ router.post(
   validateRequest(JobValidation.create),
   JobController.insertIntoDB
 );
+router.post('/', JobController.addedComment);
 router.post(
   '/apply',
   validateRequest(JobValidation.apply),

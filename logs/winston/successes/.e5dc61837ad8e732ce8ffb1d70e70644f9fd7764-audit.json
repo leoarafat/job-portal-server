@@ -84,6 +84,21 @@
             "date": 1692721074000,
             "name": "D:\\next-level\\job portal\\server\\logs\\winston\\successes\\phu-2023-23-08-00-success.log",
             "hash": "f48730a3439d19fe486447a05db070adff138f5a77e0ea6171fb002d896b7635"
+        },
+        {
+            "date": 1692761929845,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\successes\\phu-2023-23-08-11-success.log",
+            "hash": "4aebc6e40af02897ffb682a106d69b3134baab54d2a77dc6b3aa56e599ed93ff"
+        },
+        {
+            "date": 1692766000887,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\successes\\phu-2023-23-08-12-success.log",
+            "hash": "d86a5c459743889a5281af180117d3aed0e574c77c5fa068603e4148f5868c21"
+        },
+        {
+            "date": 1692767382369,
+            "name": "D:\\next-level\\job portal\\server\\logs\\winston\\successes\\phu-2023-23-08-13-success.log",
+            "hash": "b3764b487e4a4f79b415211bb580f70045a97032714ddcc9723c9661de73dbd4"
         }
     ],
     "hashType": "sha256"

@@ -7,23 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id           String        @id @default(uuid())
-//   email        String        @unique
-//   password     String
-//   fullName     String
-//   userType     UserType
-//   createdAt    DateTime      @default(now())
-//   updatedAt    DateTime      @updatedAt
-//   candidate    Candidate?
-//   employee     Employee?
-//   jobs         Job[]
-//   savedJobs    SavedJob[]
-//   applications Application[]
-
-//   @@map("users")
-// }
-
 model Candidate {
   id String @id @default(uuid())
 
@@ -34,11 +17,11 @@ model Candidate {
   mobileNumber     String?
   email            String        @unique
   password         String        @unique
-  role             UserType
+  role             String        @default("Candidate")
   portfolioUrl     String?
   facebookUrl      String?
   linkedinUrl      String?
-  jobType          String?
+  jobType          JobType?
   presentAddress   String?
   permanentAddress String?
   careerObjective  String?
@@ -46,8 +29,8 @@ model Candidate {
   updatedAt        DateTime      @updatedAt
   educations       String?
   experience       String?
-  Application      Application[]
-  SavedJob         SavedJob[]
+  applications     Application[]
+  savedJobs        SavedJob[]
 
   @@map("candidates")
 }
@@ -58,7 +41,7 @@ model Employee {
   phoneNumber          String?
   email                String   @unique
   password             String   @unique
-  role                 UserType
+  role                 String   @default("Employe")
   website              String?
   facebookUrl          String?
   twitterUrl           String?
@@ -74,7 +57,7 @@ model Employee {
   recruiterNumber      String?
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
-  Job                  Job[]
+  jobs                 Job[]
 
   @@map("employes")
 }
@@ -92,17 +75,27 @@ model Job {
   companyName         String
   salary              String
   vacancy             Int
-  jobCategory         String
+  jobCategory         JobCategory
   deadline            String
-  type                String // Full-time, Part-time, Remote, etc.
+  type                Type
   employeeId          String
   employee            Employee      @relation(fields: [employeeId], references: [id])
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
-  Application         Application[]
-  SavedJob            SavedJob[]
+  applications        Application[]
+  savedJobs           SavedJob[]
+  comments            Comment[]
 
   @@map("jobs")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id])
 }
 
 model SavedJob {
@@ -124,14 +117,38 @@ model Application {
   candidate   Candidate @relation(fields: [candidateId], references: [id])
   jobId       String
   job         Job       @relation(fields: [jobId], references: [id])
-  status      String // Submitted, In Review, Accepted, Rejected, etc.
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@map("applications")
 }
 
-enum UserType {
-  Candidate
-  Employee
+enum JobType {
+  FullTime
+  Internship
+  PartTime
+}
+
+enum JobCategory {
+  SoftwareDevelopment
+  WebDevelopment
+  DataScience
+  NetworkAdministration
+  CyberSecurity
+  DatabaseAdministration
+  DevOps
+  CloudComputing
+  ITConsulting
+  SystemAnalysis
+  UIUXDesign
+  QualityAssurance
+  ITSupport
+  BusinessIntelligence
+  MobileAppDevelopment
+}
+
+enum Type {
+  FullTime
+  PartTime
+  Remote
 }

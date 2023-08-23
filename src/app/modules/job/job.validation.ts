@@ -56,9 +56,6 @@ const apply = z.object({
     jobId: z.string({
       required_error: 'Candidate id is required',
     }),
-    status: z.string({
-      required_error: 'status is required',
-    }),
   }),
 });
 const save = z.object({

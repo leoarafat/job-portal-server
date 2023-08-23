@@ -1,4 +1,5 @@
-import { Application, Job, Prisma, SavedJob } from '@prisma/client';
+import { Application, Comment, Job, Prisma, SavedJob } from '@prisma/client';
+import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
@@ -40,7 +41,7 @@ const getAllFromDB = async (
     paginationHelpers.calculatePagination(paginationOptions);
 
   const andConditions = [];
-  //!searching
+  //*searching
   if (searchTerm) {
     andConditions.push({
       OR: jobSearchableFields.map(field => ({
@@ -51,7 +52,7 @@ const getAllFromDB = async (
       })),
     });
   }
-  //!filtering
+  //*filtering
   if (Object.keys(filtersData).length > 0) {
     andConditions.push({
       AND: Object.keys(filtersData).map(key => ({
@@ -61,7 +62,7 @@ const getAllFromDB = async (
       })),
     });
   }
-  //!where conditions
+  //*where conditions
   const whereConditions: Prisma.JobWhereInput =
     andConditions.length > 0 ? { AND: andConditions } : {};
 
@@ -128,6 +129,23 @@ const deleteJob = async (id: string): Promise<Job> => {
 };
 //! Apply job
 const applyJob = async (payload: Application): Promise<Application> => {
+  const candidateId = payload?.candidateId;
+  const jobId = payload.jobId;
+
+  const existingApplication = await prisma.application.findFirst({
+    where: {
+      candidateId: candidateId,
+      jobId: jobId,
+    },
+  });
+
+  if (existingApplication) {
+    throw new ApiError(
+      httpStatus.NOT_ACCEPTABLE,
+      'Candidate has already applied to this job.'
+    );
+  }
+
   const result = await prisma.application.create({
     data: payload,
     include: {
@@ -135,8 +153,10 @@ const applyJob = async (payload: Application): Promise<Application> => {
       job: true,
     },
   });
+
   return result;
 };
+
 //! My job list
 const myJob = async (id: string): Promise<Application | null> => {
   const result = await prisma.application.findUnique({
@@ -152,6 +172,19 @@ const myJob = async (id: string): Promise<Application | null> => {
 };
 //!Job save list
 const saveJob = async (payload: SavedJob): Promise<SavedJob> => {
+  const candidateId = payload?.candidateId;
+  const jobId = payload.jobId;
+
+  const existingApplication = await prisma.savedJob.findFirst({
+    where: {
+      candidateId: candidateId,
+      jobId: jobId,
+    },
+  });
+
+  if (existingApplication) {
+    throw new ApiError(httpStatus.NOT_ACCEPTABLE, 'Already saved this job.');
+  }
   const result = await prisma.savedJob.create({
     data: payload,
     include: {
@@ -174,6 +207,13 @@ const getSavedJob = async (id: string): Promise<SavedJob | null> => {
   });
   return result;
 };
+//! Added Comment
+const addedComment = async (payload: Comment): Promise<Comment> => {
+  const result = await prisma.comment.create({
+    data: payload,
+  });
+  return result;
+};
 export const JobService = {
   insertIntoDB,
   getAllFromDB,
@@ -184,4 +224,5 @@ export const JobService = {
   myJob,
   saveJob,
   getSavedJob,
+  addedComment,
 };
