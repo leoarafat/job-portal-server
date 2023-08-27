@@ -13,8 +13,8 @@ model Candidate {
   firstName        String
   lastName         String
   gender           Gender?
-  nidNumber        String?
-  mobileNumber     String?
+  nidNumber        Int?
+  mobileNumber     Int?
   photoUrl         String?
   email            String   @unique
   password         String   @unique
@@ -51,12 +51,12 @@ model Employee {
   linkedinUrl          String?
   companySize          CompanySize?
   tin                  String?
-  tradeLicenseNumber   String?
+  tradeLicenseNumber   Int?
   address              String?
   description          String?
   recruiterName        String?
   recruiterDesignation String?
-  recruiterNumber      String?
+  recruiterNumber      Int?
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
   jobs                 Job[]
@@ -70,7 +70,7 @@ model Job {
   positionSummery     String
   jobResponsibilities String
   qualification       String
-  requiredSkill       String
+  requiredSkill       String[]
   education           String
   benefits            String
   location            LocationType
@@ -121,10 +121,25 @@ model Application {
   candidate   Candidate @relation(fields: [candidateId], references: [id])
   jobId       String
   job         Job       @relation(fields: [jobId], references: [id])
+  assessment  String
+  coverLetter String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@map("applications")
+}
+
+model Courses {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  photoUrl    String
+  owner       String
+  price       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("courses")
 }
 
 enum JobType {

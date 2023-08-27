@@ -1,7 +1,7 @@
 import express from 'express';
-
 import { AuthRoutes } from '../modules/auth/auth.routes';
 import { CandidateRoutes } from '../modules/candidate/candidate.routes';
+import { CourseRoutes } from '../modules/courses/course.routes';
 import { employeeRoutes } from '../modules/employee/employee.routes';
 import { JobRoutes } from '../modules/job/job.routes';
 
@@ -19,6 +19,10 @@ const moduleRoutes = [
   {
     path: '/jobs',
     routes: JobRoutes,
+  },
+  {
+    path: '/course',
+    routes: CourseRoutes,
   },
   {
     path: '/auth',

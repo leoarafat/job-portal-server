@@ -1,3 +1,4 @@
+import { Gender, JobType } from '@prisma/client';
 import { z } from 'zod';
 
 const create = z.object({
@@ -22,13 +23,17 @@ const update = z.object({
     firstName: z.string().optional(),
     lastName: z.string().optional(),
     email: z.string().optional(),
-    gender: z.string().optional(),
+    gender: z
+      .enum([...Object.values(Gender)] as [string, ...string[]], {})
+      .optional(),
     nidNumber: z.string().optional(),
     mobileNumber: z.string().optional(),
     portfolioUrl: z.string().optional(),
     facebookUrl: z.string().optional(),
     linkedinUrl: z.string().optional(),
-    jobType: z.string().optional(),
+    jobType: z
+      .enum([...Object.values(JobType)] as [string, ...string[]], {})
+      .optional(),
     presentAddress: z.string().optional(),
     permanentAddress: z.string().optional(),
     careerObjective: z.string().optional(),

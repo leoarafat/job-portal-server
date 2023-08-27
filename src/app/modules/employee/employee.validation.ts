@@ -1,3 +1,4 @@
+import { CompanySize } from '@prisma/client';
 import { z } from 'zod';
 
 const create = z.object({
@@ -24,7 +25,9 @@ const update = z.object({
     facebookUrl: z.string().optional(),
     twitterUrl: z.string().optional(),
     linkedinUrl: z.string().optional(),
-    companySize: z.string().optional(),
+    companySize: z
+      .enum([...Object.values(CompanySize)] as [string, ...string[]], {})
+      .optional(),
     tin: z.string().optional(),
     tradeLicenseNumber: z.string().optional(),
     companyLogo: z.string().optional(),
