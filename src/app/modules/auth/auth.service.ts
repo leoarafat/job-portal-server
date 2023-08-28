@@ -5,14 +5,12 @@ import { prisma } from '../../../shared/prisma';
 import { ILoginUser, ILoginUserResponse } from './auth.interface';
 
 //! Login Candidate
-const loginCandidate = async (
-  payload: ILoginUser
-): Promise<ILoginUserResponse> => {
+const loginCandidate = async (payload: ILoginUser) => {
   const { email, password } = payload;
 
   const candidate = await prisma.candidate.findUnique({
     where: { email },
-    select: { email: true, password: true, role: true },
+    select: { email: true, id: true, password: true, role: true },
   });
 
   if (!candidate) {
@@ -42,6 +40,7 @@ const loginCandidate = async (
   return {
     accessToken,
     refreshToken,
+    candidate,
   };
 };
 //! Login Employee

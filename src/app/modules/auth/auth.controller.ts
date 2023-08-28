@@ -9,18 +9,19 @@ import { AuthService } from './auth.service';
 const loginCandidate = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
   const result = await AuthService.loginCandidate(loginData);
-  const { refreshToken, ...others } = result;
-
+  console.log(result);
+  const { refreshToken, candidate } = result;
+  console.log(candidate);
   const cookieOptions = {
     secure: config.env === 'production',
     httpOnly: true,
   };
   res.cookie('refreshToken', refreshToken, cookieOptions);
-  sendResponse<ILoginUserResponse>(res, {
+  sendResponse(res, {
     statusCode: 200,
     success: true,
     message: 'Candidate loggedin successfully !',
-    data: others,
+    data: candidate,
   });
 });
 //! Login Employee

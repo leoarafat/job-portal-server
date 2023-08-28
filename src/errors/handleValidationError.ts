@@ -1,15 +1,15 @@
+import { Prisma } from '@prisma/client';
 import { IGenericErrorResponse } from '../interfaces/common';
-import { IGenericErrorMessage } from '../interfaces/error';
 
-const handleValidationError = (error: any): IGenericErrorResponse => {
-  const errors: IGenericErrorMessage[] = Object.values(error.errors).map(
-    (el: any | any) => {
-      return {
-        path: el?.path,
-        message: el?.message,
-      };
-    }
-  );
+const handleValidationError = (
+  error: Prisma.PrismaClientValidationError
+): IGenericErrorResponse => {
+  const errors = [
+    {
+      path: '',
+      message: error.message,
+    },
+  ];
   const statusCode = 400;
   return {
     statusCode,

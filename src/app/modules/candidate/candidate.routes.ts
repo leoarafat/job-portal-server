@@ -5,19 +5,19 @@ import { CandidateValidation } from './candidate.validation';
 const router = express.Router();
 
 router.post(
-  '/candidate',
+  '/',
   validateRequest(CandidateValidation.create),
   CandidateController.insertIntoDB
 );
-router.get('/candidate/', CandidateController.getAllFromDB);
-router.get('/candidate/:id', CandidateController.getByIdFromDB);
+router.get('/', CandidateController.getAllFromDB);
+router.get('/:id', CandidateController.getByIdFromDB);
 router.patch(
-  '/candidate/:id',
+  '/:id',
   validateRequest(CandidateValidation.update),
   CandidateController.updateCandidate
 );
 router.delete(
-  '/candidate/:id',
+  '/:id',
 
   CandidateController.deleteCandidate
 );
