@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 const create = z.object({
   body: z.object({
-    companyName: z.string({
+    name: z.string({
       required_error: 'Name  is required',
     }),
 
@@ -18,7 +18,7 @@ const create = z.object({
 
 const update = z.object({
   body: z.object({
-    companyName: z.string().optional(),
+    name: z.string().optional(),
     phoneNumber: z.string().optional(),
     email: z.string().optional(),
     website: z.string().optional(),

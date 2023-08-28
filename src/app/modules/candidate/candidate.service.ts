@@ -1,13 +1,19 @@
 import { Candidate } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
+import httpStatus from 'http-status';
 import cloudinary from '../../../config/cloudinaryConfig';
 import ApiError from '../../../errors/ApiError';
 import { prisma } from '../../../shared/prisma';
 //!Create Candidate
 const createCandidate = async (payload: Candidate): Promise<Candidate> => {
-  if (!payload) {
-    throw new ApiError(404, 'Something Went wrong');
+  const isExist = await prisma.candidate.findFirst({
+    where: {
+      email: payload.email,
+    },
+  });
+  if (isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Already exist this email');
   }
   const hashedPassword = await bcrypt.hash(payload.password, 10);
   const result = await prisma.candidate.create({

@@ -2,7 +2,7 @@
 import bcrypt from 'bcryptjs';
 import jwt, { Secret } from 'jsonwebtoken';
 import { prisma } from '../../../shared/prisma';
-import { ILoginUser, ILoginUserResponse } from './auth.interface';
+import { ILoginUser } from './auth.interface';
 
 //! Login Candidate
 const loginCandidate = async (payload: ILoginUser) => {
@@ -10,7 +10,14 @@ const loginCandidate = async (payload: ILoginUser) => {
 
   const candidate = await prisma.candidate.findUnique({
     where: { email },
-    select: { email: true, id: true, password: true, role: true },
+    select: {
+      name: true,
+
+      email: true,
+      id: true,
+      password: true,
+      role: true,
+    },
   });
 
   if (!candidate) {
@@ -44,14 +51,18 @@ const loginCandidate = async (payload: ILoginUser) => {
   };
 };
 //! Login Employee
-const loginEmployee = async (
-  payload: ILoginUser
-): Promise<ILoginUserResponse> => {
+const loginEmployee = async (payload: ILoginUser) => {
   const { email, password } = payload;
 
   const employee = await prisma.employee.findUnique({
     where: { email },
-    select: { email: true, password: true, role: true },
+    select: {
+      name: true,
+      email: true,
+      id: true,
+      password: true,
+      role: true,
+    },
   });
 
   if (!employee) {
@@ -81,6 +92,7 @@ const loginEmployee = async (
   return {
     accessToken,
     refreshToken,
+    employee,
   };
 };
 

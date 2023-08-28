@@ -3,12 +3,10 @@ import { z } from 'zod';
 
 const create = z.object({
   body: z.object({
-    firstName: z.string({
-      required_error: 'First Name is required',
+    name: z.string({
+      required_error: 'Name is required',
     }),
-    lastName: z.string({
-      required_error: 'Last Name is required',
-    }),
+
     email: z.string({
       required_error: 'Email is required',
     }),
@@ -20,8 +18,8 @@ const create = z.object({
 
 const update = z.object({
   body: z.object({
-    firstName: z.string().optional(),
-    lastName: z.string().optional(),
+    name: z.string().optional(),
+
     email: z.string().optional(),
     gender: z
       .enum([...Object.values(Gender)] as [string, ...string[]], {})

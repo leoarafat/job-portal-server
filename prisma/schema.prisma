@@ -10,8 +10,7 @@ datasource db {
 model Candidate {
   id String @id @default(uuid())
 
-  firstName        String
-  lastName         String
+  name             String
   gender           Gender?
   nidNumber        Int?
   mobileNumber     Int?
@@ -39,12 +38,12 @@ model Candidate {
 
 model Employee {
   id                   String       @id @default(uuid())
-  companyName          String
+  name                 String
   phoneNumber          String?
   email                String       @unique
   password             String       @unique
   photoUrl             String?
-  role                 String       @default("Employe")
+  role                 String       @default("Employee")
   website              String?
   facebookUrl          String?
   twitterUrl           String?
