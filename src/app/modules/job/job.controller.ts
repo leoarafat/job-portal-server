@@ -9,7 +9,7 @@ import { jobFilterableFields } from './job.constants';
 import { JobService } from './job.service';
 
 //!Create Job
-const insertIntoDB = catchAsync(async (req: Request, res: Response) => {
+const insertIntoDb = catchAsync(async (req: Request, res: Response) => {
   const result = await JobService.insertIntoDB(req.body);
   sendResponse<Job>(res, {
     statusCode: httpStatus.OK,
@@ -36,6 +36,18 @@ const getById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await JobService.getById(id);
   sendResponse<Job>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Job post retrieved successfully',
+    data: result,
+  });
+});
+//!Get Previous job
+const getPreviousJob = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const result = await JobService.getPreviousJob(id);
+  sendResponse<Job[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Job post retrieved successfully',
@@ -76,9 +88,8 @@ const applyJob = catchAsync(async (req: Request, res: Response) => {
 });
 //!Get my applied Job
 const myJob = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const result = await JobService.myJob(id);
-  sendResponse<Application>(res, {
+  const result = await JobService.myJob(req.body);
+  sendResponse<Application[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'My application retrieved successfully',
@@ -117,7 +128,7 @@ const addedComment = catchAsync(async (req: Request, res: Response) => {
   });
 });
 export const JobController = {
-  insertIntoDB,
+  insertIntoDb,
   getAllFromDB,
   getById,
   updateJob,
@@ -127,4 +138,5 @@ export const JobController = {
   savedJob,
   getSavedJob,
   addedComment,
+  getPreviousJob,
 };

@@ -9,9 +9,9 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const candidate_controller_1 = require("./candidate.controller");
 const candidate_validation_1 = require("./candidate.validation");
 const router = express_1.default.Router();
-router.post('/candidate', (0, validateRequest_1.default)(candidate_validation_1.CandidateValidation.create), candidate_controller_1.CandidateController.insertIntoDB);
-router.get('/candidate/', candidate_controller_1.CandidateController.getAllFromDB);
-router.get('/candidate/:id', candidate_controller_1.CandidateController.getByIdFromDB);
-router.patch('/candidate/:id', (0, validateRequest_1.default)(candidate_validation_1.CandidateValidation.update), candidate_controller_1.CandidateController.updateCandidate);
-router.delete('/candidate/:id', candidate_controller_1.CandidateController.deleteCandidate);
+router.post('/', (0, validateRequest_1.default)(candidate_validation_1.CandidateValidation.create), candidate_controller_1.CandidateController.insertIntoDB);
+router.get('/', candidate_controller_1.CandidateController.getAllFromDB);
+router.get('/:id', candidate_controller_1.CandidateController.getByIdFromDB);
+router.patch('/:id', (0, validateRequest_1.default)(candidate_validation_1.CandidateValidation.update), candidate_controller_1.CandidateController.updateCandidate);
+router.delete('/:id', candidate_controller_1.CandidateController.deleteCandidate);
 exports.CandidateRoutes = router;

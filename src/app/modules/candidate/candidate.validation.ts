@@ -37,6 +37,7 @@ const update = z.object({
     careerObjective: z.string().optional(),
     educations: z.string().optional(),
     experience: z.string().optional(),
+    isComplete: z.boolean().optional(),
   }),
 });
 

@@ -22,7 +22,13 @@ const loginCandidate = (payload) => __awaiter(void 0, void 0, void 0, function* 
     const { email, password } = payload;
     const candidate = yield prisma_1.prisma.candidate.findUnique({
         where: { email },
-        select: { email: true, password: true, role: true },
+        select: {
+            name: true,
+            email: true,
+            id: true,
+            password: true,
+            role: true,
+        },
     });
     if (!candidate) {
         throw new Error('candidate not found');
@@ -38,6 +44,7 @@ const loginCandidate = (payload) => __awaiter(void 0, void 0, void 0, function* 
     return {
         accessToken,
         refreshToken,
+        candidate,
     };
 });
 //! Login Employee
@@ -45,7 +52,13 @@ const loginEmployee = (payload) => __awaiter(void 0, void 0, void 0, function* (
     const { email, password } = payload;
     const employee = yield prisma_1.prisma.employee.findUnique({
         where: { email },
-        select: { email: true, password: true, role: true },
+        select: {
+            name: true,
+            email: true,
+            id: true,
+            password: true,
+            role: true,
+        },
     });
     if (!employee) {
         throw new Error('employee not found');
@@ -61,6 +74,7 @@ const loginEmployee = (payload) => __awaiter(void 0, void 0, void 0, function* (
     return {
         accessToken,
         refreshToken,
+        employee,
     };
 });
 exports.AuthService = {

@@ -2,6 +2,6 @@ export type IJobFilterRequest = {
   searchTerm?: string | undefined;
   jobCategory?: string | undefined;
   location?: string | undefined;
-  title?: string | undefined;
+  type?: string | undefined;
   companyName?: string | undefined;
 };

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JobValidation = void 0;
+const client_1 = require("@prisma/client");
 const zod_1 = require("zod");
 const create = zod_1.z.object({
     body: zod_1.z.object({
@@ -17,14 +18,14 @@ const create = zod_1.z.object({
             required_error: 'qualification id is required',
         }),
         requiredSkill: zod_1.z.string({
-            required_error: 'required Skill id is required',
+            required_error: 'qualification id is required',
         }),
         education: zod_1.z.string({
             required_error: 'education id is required',
         }),
         benefits: zod_1.z.string({}).optional(),
-        location: zod_1.z.string({
-            required_error: 'location id is required',
+        location: zod_1.z.enum([...Object.values(client_1.LocationType)], {
+            required_error: 'Location is required',
         }),
         companyName: zod_1.z.string({
             required_error: 'company name id is required',
@@ -32,17 +33,17 @@ const create = zod_1.z.object({
         salary: zod_1.z.string({
             required_error: 'salary id is required',
         }),
-        vacancy: zod_1.z.number({
+        vacancy: zod_1.z.string({
             required_error: 'vacancy id is required',
         }),
-        jobCategory: zod_1.z.string({
-            required_error: 'job Category id is required',
+        jobCategory: zod_1.z.enum([...Object.values(client_1.JobCategory)], {
+            required_error: 'Job category is required',
         }),
         deadline: zod_1.z.string({
             required_error: 'deadline id is required',
         }),
-        type: zod_1.z.string({
-            required_error: 'Job type id is required',
+        type: zod_1.z.enum([...Object.values(client_1.Type)], {
+            required_error: 'Job Type is required',
         }),
         employeeId: zod_1.z.string({
             required_error: 'employee id id is required',
@@ -56,6 +57,12 @@ const apply = zod_1.z.object({
         }),
         jobId: zod_1.z.string({
             required_error: 'Candidate id is required',
+        }),
+        assessment: zod_1.z.string({
+            required_error: 'assessment is required',
+        }),
+        coverLetter: zod_1.z.string({
+            required_error: 'Cover Letter is required',
         }),
     }),
 });
@@ -78,13 +85,19 @@ const update = zod_1.z.object({
         requiredSkill: zod_1.z.string().optional(),
         education: zod_1.z.string().optional(),
         benefits: zod_1.z.string().optional(),
-        location: zod_1.z.string().optional(),
+        location: zod_1.z
+            .enum([...Object.values(client_1.LocationType)], {})
+            .optional(),
         companyName: zod_1.z.string().optional(),
         salary: zod_1.z.string().optional(),
-        vacancy: zod_1.z.number().optional(),
-        jobCategory: zod_1.z.string().optional(),
+        vacancy: zod_1.z.string().optional(),
+        jobCategory: zod_1.z
+            .enum([...Object.values(client_1.JobCategory)], {})
+            .optional(),
         deadline: zod_1.z.string().optional(),
-        type: zod_1.z.string().optional(),
+        type: zod_1.z
+            .enum([...Object.values(client_1.Type)], {})
+            .optional(),
         employeeId: zod_1.z.string().optional(),
     }),
 });

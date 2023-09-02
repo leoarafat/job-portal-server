@@ -14,13 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CandidateService = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const http_status_1 = __importDefault(require("http-status"));
 const cloudinaryConfig_1 = __importDefault(require("../../../config/cloudinaryConfig"));
 const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const prisma_1 = require("../../../shared/prisma");
 //!Create Candidate
 const createCandidate = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!payload) {
-        throw new ApiError_1.default(404, 'Something Went wrong');
+    const isExist = yield prisma_1.prisma.candidate.findFirst({
+        where: {
+            email: payload.email,
+        },
+    });
+    if (isExist) {
+        throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, 'Already exist this email');
     }
     const hashedPassword = yield bcrypt_1.default.hash(payload.password, 10);
     const result = yield prisma_1.prisma.candidate.create({
@@ -52,6 +58,7 @@ const updateCandidateProfile = (id, payload) => __awaiter(void 0, void 0, void 0
         payload.photoUrl = uploadedImage.secure_url;
     }
     delete payload.photoUrl;
+    payload.isComplete = true;
     const result = yield prisma_1.prisma.candidate.update({
         where: { id },
         data: payload,

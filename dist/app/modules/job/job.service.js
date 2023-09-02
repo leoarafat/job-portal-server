@@ -115,6 +115,18 @@ const getById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
+//! get previous job
+const getPreviousJob = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.job.findMany({
+        where: {
+            employeeId: id,
+        },
+        include: {
+            employee: true,
+        },
+    });
+    return result;
+});
 //! update job
 const updateJob = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.prisma.job.update({
@@ -228,4 +240,5 @@ exports.JobService = {
     saveJob,
     getSavedJob,
     addedComment,
+    getPreviousJob,
 };

@@ -23,6 +23,7 @@ const update = z.object({
     email: z.string().optional(),
     website: z.string().optional(),
     facebookUrl: z.string().optional(),
+
     twitterUrl: z.string().optional(),
     linkedinUrl: z.string().optional(),
     companySize: z

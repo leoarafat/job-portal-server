@@ -6,7 +6,7 @@ const router = express.Router();
 router.post(
   '/',
   validateRequest(JobValidation.create),
-  JobController.insertIntoDB
+  JobController.insertIntoDb
 );
 router.post('/', JobController.addedComment);
 router.post(
@@ -21,6 +21,7 @@ router.post(
 );
 router.get('/', JobController.getAllFromDB);
 router.get('/:id', JobController.getById);
+router.get('/previous-jobs/:id', JobController.getPreviousJob);
 router.get('/my-application/:id', JobController.myJob);
 router.get('/saved-job/:id', JobController.getSavedJob);
 router.patch(

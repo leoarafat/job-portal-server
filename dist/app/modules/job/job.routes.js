@@ -15,6 +15,7 @@ router.post('/apply', (0, validateRequest_1.default)(job_validation_1.JobValidat
 router.post('/save-job', (0, validateRequest_1.default)(job_validation_1.JobValidation.save), job_controller_1.JobController.savedJob);
 router.get('/', job_controller_1.JobController.getAllFromDB);
 router.get('/:id', job_controller_1.JobController.getById);
+router.get('/previous-jobs/:id', job_controller_1.JobController.getPreviousJob);
 router.get('/my-application/:id', job_controller_1.JobController.myJob);
 router.get('/saved-job/:id', job_controller_1.JobController.getSavedJob);
 router.patch('/:id', (0, validateRequest_1.default)(job_validation_1.JobValidation.update), job_controller_1.JobController.updateJob);

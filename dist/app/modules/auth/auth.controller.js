@@ -32,7 +32,7 @@ const auth_service_1 = require("./auth.service");
 const loginCandidate = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loginData = __rest(req.body, []);
     const result = yield auth_service_1.AuthService.loginCandidate(loginData);
-    const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
+    const { refreshToken, candidate } = result;
     const cookieOptions = {
         secure: config_1.default.env === 'production',
         httpOnly: true,
@@ -42,14 +42,14 @@ const loginCandidate = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
         statusCode: 200,
         success: true,
         message: 'Candidate loggedin successfully !',
-        data: others,
+        data: candidate,
     });
 }));
 //! Login Employee
 const loginEmployee = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loginData = __rest(req.body, []);
     const result = yield auth_service_1.AuthService.loginEmployee(loginData);
-    const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
+    const { refreshToken, employee } = result;
     const cookieOptions = {
         secure: config_1.default.env === 'production',
         httpOnly: true,
@@ -59,7 +59,7 @@ const loginEmployee = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
         statusCode: 200,
         success: true,
         message: 'Employee loggedin successfully !',
-        data: others,
+        data: employee,
     });
 }));
 exports.AuthController = {

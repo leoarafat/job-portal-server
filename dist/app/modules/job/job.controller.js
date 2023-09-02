@@ -54,6 +54,17 @@ const getById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0
         data: result,
     });
 }));
+//!Get Previous job
+const getPreviousJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield job_service_1.JobService.getPreviousJob(id);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Job post retrieved successfully',
+        data: result,
+    });
+}));
 //!Update Job
 const updateJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
@@ -139,4 +150,5 @@ exports.JobController = {
     savedJob,
     getSavedJob,
     addedComment,
+    getPreviousJob,
 };

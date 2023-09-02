@@ -15,6 +15,7 @@ const createCandidate = async (payload: Candidate): Promise<Candidate> => {
   if (isExist) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Already exist this email');
   }
+
   const hashedPassword = await bcrypt.hash(payload.password, 10);
   const result = await prisma.candidate.create({
     data: {
@@ -56,7 +57,7 @@ const updateCandidateProfile = async (
     payload.photoUrl = uploadedImage.secure_url;
   }
   delete payload.photoUrl;
-
+  payload.isComplete = true;
   const result = await prisma.candidate.update({
     where: { id },
     data: payload,

@@ -2,7 +2,7 @@ export const jobFilterableFields: string[] = [
   'searchTerm',
   'jobCategory',
   'location',
-  'title',
+  'type',
   'companyName',
 ];
 

@@ -102,6 +102,19 @@ const getById = async (id: string): Promise<Job | null> => {
   });
   return result;
 };
+//! get previous job
+const getPreviousJob = async (id: string): Promise<Job[] | null> => {
+  const result = await prisma.job.findMany({
+    where: {
+      employeeId: id,
+    },
+    include: {
+      employee: true,
+    },
+  });
+
+  return result;
+};
 //! update job
 const updateJob = async (id: string, payload: Partial<Job>): Promise<Job> => {
   const result = await prisma.job.update({
@@ -142,7 +155,7 @@ const applyJob = async (payload: Application): Promise<Application> => {
   if (existingApplication) {
     throw new ApiError(
       httpStatus.NOT_ACCEPTABLE,
-      'Candidate has already applied to this job.'
+      'Already applied to this job.'
     );
   }
 
@@ -158,10 +171,10 @@ const applyJob = async (payload: Application): Promise<Application> => {
 };
 
 //! My job list
-const myJob = async (id: string): Promise<Application | null> => {
-  const result = await prisma.application.findUnique({
+const myJob = async (payload: any): Promise<Application[] | null> => {
+  const result = await prisma.application.findMany({
     where: {
-      id,
+      candidateId: payload.id,
     },
     include: {
       candidate: true,
@@ -225,4 +238,5 @@ export const JobService = {
   saveJob,
   getSavedJob,
   addedComment,
+  getPreviousJob,
 };

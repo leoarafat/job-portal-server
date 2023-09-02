@@ -12,7 +12,6 @@ const loginCandidate = async (payload: ILoginUser) => {
     where: { email },
     select: {
       name: true,
-
       email: true,
       id: true,
       password: true,

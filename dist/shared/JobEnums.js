@@ -8,7 +8,7 @@ var JobType;
     JobType["FullTime"] = "FullTime";
     JobType["Internship"] = "Internship";
     JobType["PartTime"] = "PartTime";
-})(JobType = exports.JobType || (exports.JobType = {}));
+})(JobType || (exports.JobType = JobType = {}));
 var JobCategory;
 (function (JobCategory) {
     JobCategory["SoftwareDevelopment"] = "SoftwareDevelopment";
@@ -26,13 +26,13 @@ var JobCategory;
     JobCategory["ITSupport"] = "ITSupport";
     JobCategory["BusinessIntelligence"] = "BusinessIntelligence";
     JobCategory["MobileAppDevelopment"] = "MobileAppDevelopment";
-})(JobCategory = exports.JobCategory || (exports.JobCategory = {}));
+})(JobCategory || (exports.JobCategory = JobCategory = {}));
 var Type;
 (function (Type) {
     Type["FullTime"] = "FullTime";
     Type["PartTime"] = "PartTime";
     Type["Remote"] = "Remote";
-})(Type = exports.Type || (exports.Type = {}));
+})(Type || (exports.Type = Type = {}));
 // LocationEnums.ts
 var LocationType;
 (function (LocationType) {
@@ -44,4 +44,4 @@ var LocationType;
     LocationType["Rajshahi"] = "Rajshahi";
     LocationType["Rangpur"] = "Rangpur";
     LocationType["Sylhet"] = "Sylhet";
-})(LocationType = exports.LocationType || (exports.LocationType = {}));
+})(LocationType || (exports.LocationType = LocationType = {}));

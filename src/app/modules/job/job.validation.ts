@@ -16,9 +16,10 @@ const create = z.object({
     qualification: z.string({
       required_error: 'qualification id is required',
     }),
-    requiredSkill: z.array(z.string(), {
-      required_error: 'Skilles are required',
+    requiredSkill: z.string({
+      required_error: 'qualification id is required',
     }),
+
     education: z.string({
       required_error: 'education id is required',
     }),
@@ -35,7 +36,7 @@ const create = z.object({
     salary: z.string({
       required_error: 'salary id is required',
     }),
-    vacancy: z.number({
+    vacancy: z.string({
       required_error: 'vacancy id is required',
     }),
     jobCategory: z.enum(
@@ -88,7 +89,8 @@ const update = z.object({
     positionSummery: z.string().optional(),
     jobResponsibilities: z.string().optional(),
     qualification: z.string().optional(),
-    requiredSkill: z.array(z.string(), {}).optional(),
+    requiredSkill: z.string().optional(),
+
     education: z.string().optional(),
     benefits: z.string().optional(),
     location: z
@@ -96,7 +98,7 @@ const update = z.object({
       .optional(),
     companyName: z.string().optional(),
     salary: z.string().optional(),
-    vacancy: z.number().optional(),
+    vacancy: z.string().optional(),
     jobCategory: z
       .enum([...Object.values(JobCategory)] as [string, ...string[]], {})
       .optional(),

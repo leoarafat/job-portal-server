@@ -50,18 +50,17 @@ const updateEmployeeProfile = async (
   id: string,
   payload: Partial<Employee>
 ) => {
+  console.log(payload);
   if (payload.photoUrl) {
     const uploadedImage = await cloudinary.uploader.upload(payload.photoUrl);
-
     payload.photoUrl = uploadedImage.secure_url;
   }
   delete payload.photoUrl;
-
+  payload.isComplete = true;
   const result = await prisma.employee.update({
     where: { id },
     data: payload,
   });
-
   return result;
 };
 //!Delete employee

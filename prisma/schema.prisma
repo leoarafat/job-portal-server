@@ -12,12 +12,12 @@ model Candidate {
 
   name             String
   gender           Gender?
-  nidNumber        Int?
-  mobileNumber     Int?
+  nidNumber        String?
+  mobileNumber     String?
   photoUrl         String?
-  email            String   @unique
-  password         String   @unique
-  role             String   @default("Candidate")
+  email            String        @unique
+  password         String        @unique
+  role             String        @default("Candidate")
   portfolioUrl     String?
   facebookUrl      String?
   linkedinUrl      String?
@@ -25,13 +25,13 @@ model Candidate {
   presentAddress   String?
   permanentAddress String?
   careerObjective  String?
-
-  educations   String?
-  experience   String?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  applications Application[]
-  savedJobs    SavedJob[]
+  isComplete       Boolean?      @default(false)
+  educations       String?
+  experience       String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  applications     Application[]
+  savedJobs        SavedJob[]
 
   @@map("candidates")
 }
@@ -40,6 +40,7 @@ model Employee {
   id                   String       @id @default(uuid())
   name                 String
   phoneNumber          String?
+  isComplete           Boolean?     @default(false)
   email                String       @unique
   password             String       @unique
   photoUrl             String?
@@ -50,12 +51,12 @@ model Employee {
   linkedinUrl          String?
   companySize          CompanySize?
   tin                  String?
-  tradeLicenseNumber   Int?
+  tradeLicenseNumber   String?
   address              String?
   description          String?
   recruiterName        String?
   recruiterDesignation String?
-  recruiterNumber      Int?
+  recruiterNumber      String?
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
   jobs                 Job[]
@@ -69,13 +70,13 @@ model Job {
   positionSummery     String
   jobResponsibilities String
   qualification       String
-  requiredSkill       String[]
+  requiredSkill       String
   education           String
   benefits            String
   location            LocationType
   companyName         String
   salary              String
-  vacancy             Int
+  vacancy             String
   jobCategory         JobCategory
   deadline            String
   type                Type

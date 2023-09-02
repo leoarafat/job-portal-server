@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "candidates" ALTER COLUMN "nidNumber" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "employes" ALTER COLUMN "tradeLicenseNumber" SET DATA TYPE TEXT,
+ALTER COLUMN "recruiterNumber" SET DATA TYPE TEXT,
+ALTER COLUMN "phoneNumber" SET DATA TYPE TEXT,
+ALTER COLUMN "tin" SET DATA TYPE TEXT;
