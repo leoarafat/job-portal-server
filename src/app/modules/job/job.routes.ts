@@ -30,4 +30,5 @@ router.patch(
   JobController.updateJob
 );
 router.delete('/:id', JobController.deleteJob);
+router.delete('/saved-job/:id', JobController.deleteSavedJob);
 export const JobRoutes = router;

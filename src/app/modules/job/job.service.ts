@@ -208,14 +208,23 @@ const saveJob = async (payload: SavedJob): Promise<SavedJob> => {
   return result;
 };
 //! Get save job
-const getSavedJob = async (id: string): Promise<SavedJob | null> => {
-  const result = await prisma.savedJob.findUnique({
+const getSavedJob = async (payload: SavedJob): Promise<SavedJob[] | null> => {
+  const result = await prisma.savedJob.findMany({
     where: {
-      id,
+      candidateId: payload.candidateId,
     },
     include: {
       candidate: true,
       job: true,
+    },
+  });
+  return result;
+};
+//! delete saved job
+const deleteSavedJob = async (id: string): Promise<SavedJob | null> => {
+  const result = await prisma.savedJob.delete({
+    where: {
+      id: id,
     },
   });
   return result;
@@ -239,4 +248,5 @@ export const JobService = {
   getSavedJob,
   addedComment,
   getPreviousJob,
+  deleteSavedJob,
 };

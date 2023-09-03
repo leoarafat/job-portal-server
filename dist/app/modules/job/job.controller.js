@@ -21,7 +21,7 @@ const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const job_constants_1 = require("./job.constants");
 const job_service_1 = require("./job.service");
 //!Create Job
-const insertIntoDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const insertIntoDb = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield job_service_1.JobService.insertIntoDB(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -99,8 +99,7 @@ const applyJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 
 }));
 //!Get my applied Job
 const myJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const result = yield job_service_1.JobService.myJob(id);
+    const result = yield job_service_1.JobService.myJob(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
@@ -140,7 +139,7 @@ const addedComment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     });
 }));
 exports.JobController = {
-    insertIntoDB,
+    insertIntoDb,
     getAllFromDB,
     getById,
     updateJob,

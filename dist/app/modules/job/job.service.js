@@ -163,7 +163,7 @@ const applyJob = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         },
     });
     if (existingApplication) {
-        throw new ApiError_1.default(http_status_1.default.NOT_ACCEPTABLE, 'Candidate has already applied to this job.');
+        throw new ApiError_1.default(http_status_1.default.NOT_ACCEPTABLE, 'Already applied to this job.');
     }
     const result = yield prisma_1.prisma.application.create({
         data: payload,
@@ -175,10 +175,10 @@ const applyJob = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 //! My job list
-const myJob = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.prisma.application.findUnique({
+const myJob = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.application.findMany({
         where: {
-            id,
+            candidateId: payload.id,
         },
         include: {
             candidate: true,

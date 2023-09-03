@@ -5,7 +5,7 @@ exports.jobFilterableFields = [
     'searchTerm',
     'jobCategory',
     'location',
-    'title',
+    'type',
     'companyName',
 ];
 exports.jobSearchableFields = [

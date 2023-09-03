@@ -106,14 +106,23 @@ const savedJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-//!Fet saved Job
+//!Get saved Job
 const getSavedJob = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const result = await JobService.getSavedJob(id);
+  const result = await JobService.getSavedJob(req.body);
+  sendResponse<SavedJob[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Saved job retrieved successfully',
+    data: result,
+  });
+});
+//!Delete saved Job
+const deleteSavedJob = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobService.deleteSavedJob(req.params.id);
   sendResponse<SavedJob>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'My application retrieved successfully',
+    message: 'Saved job delete successfully',
     data: result,
   });
 });
@@ -139,4 +148,5 @@ export const JobController = {
   getSavedJob,
   addedComment,
   getPreviousJob,
+  deleteSavedJob,
 };

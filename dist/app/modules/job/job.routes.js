@@ -9,7 +9,7 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const job_controller_1 = require("./job.controller");
 const job_validation_1 = require("./job.validation");
 const router = express_1.default.Router();
-router.post('/', (0, validateRequest_1.default)(job_validation_1.JobValidation.create), job_controller_1.JobController.insertIntoDB);
+router.post('/', (0, validateRequest_1.default)(job_validation_1.JobValidation.create), job_controller_1.JobController.insertIntoDb);
 router.post('/', job_controller_1.JobController.addedComment);
 router.post('/apply', (0, validateRequest_1.default)(job_validation_1.JobValidation.apply), job_controller_1.JobController.applyJob);
 router.post('/save-job', (0, validateRequest_1.default)(job_validation_1.JobValidation.save), job_controller_1.JobController.savedJob);

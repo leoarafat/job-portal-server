@@ -23,8 +23,8 @@ const update = zod_1.z.object({
         gender: zod_1.z
             .enum([...Object.values(client_1.Gender)], {})
             .optional(),
-        nidNumber: zod_1.z.number().optional(),
-        mobileNumber: zod_1.z.number().optional(),
+        nidNumber: zod_1.z.string().optional(),
+        mobileNumber: zod_1.z.string().optional(),
         portfolioUrl: zod_1.z.string().optional(),
         facebookUrl: zod_1.z.string().optional(),
         linkedinUrl: zod_1.z.string().optional(),
