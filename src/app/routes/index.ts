@@ -21,7 +21,7 @@ const moduleRoutes = [
     routes: JobRoutes,
   },
   {
-    path: '/course',
+    path: '/courses',
     routes: CourseRoutes,
   },
   {

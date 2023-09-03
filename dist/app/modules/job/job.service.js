@@ -210,14 +210,23 @@ const saveJob = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 //! Get save job
-const getSavedJob = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.prisma.savedJob.findUnique({
+const getSavedJob = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.savedJob.findMany({
         where: {
-            id,
+            candidateId: payload.candidateId,
         },
         include: {
             candidate: true,
             job: true,
+        },
+    });
+    return result;
+});
+//! delete saved job
+const deleteSavedJob = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.savedJob.delete({
+        where: {
+            id: id,
         },
     });
     return result;
@@ -241,4 +250,5 @@ exports.JobService = {
     getSavedJob,
     addedComment,
     getPreviousJob,
+    deleteSavedJob,
 };

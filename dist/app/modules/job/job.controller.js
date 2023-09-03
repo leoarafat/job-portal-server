@@ -117,14 +117,23 @@ const savedJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 
         data: result,
     });
 }));
-//!Fet saved Job
+//!Get saved Job
 const getSavedJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const result = yield job_service_1.JobService.getSavedJob(id);
+    const result = yield job_service_1.JobService.getSavedJob(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'My application retrieved successfully',
+        message: 'Saved job retrieved successfully',
+        data: result,
+    });
+}));
+//!Delete saved Job
+const deleteSavedJob = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield job_service_1.JobService.deleteSavedJob(req.params.id);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Saved job delete successfully',
         data: result,
     });
 }));
@@ -150,4 +159,5 @@ exports.JobController = {
     getSavedJob,
     addedComment,
     getPreviousJob,
+    deleteSavedJob,
 };

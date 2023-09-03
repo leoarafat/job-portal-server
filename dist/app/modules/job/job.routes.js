@@ -20,4 +20,5 @@ router.get('/my-application/:id', job_controller_1.JobController.myJob);
 router.get('/saved-job/:id', job_controller_1.JobController.getSavedJob);
 router.patch('/:id', (0, validateRequest_1.default)(job_validation_1.JobValidation.update), job_controller_1.JobController.updateJob);
 router.delete('/:id', job_controller_1.JobController.deleteJob);
+router.delete('/saved-job/:id', job_controller_1.JobController.deleteSavedJob);
 exports.JobRoutes = router;

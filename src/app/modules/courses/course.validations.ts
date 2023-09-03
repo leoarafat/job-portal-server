@@ -23,7 +23,7 @@ const create = z.object({
 const update = z.object({
   body: z.object({
     title: z.string().optional(),
-    firstName: z.string().optional(),
+    description: z.string().optional(),
     photoUrl: z.string().optional(),
     owner: z.string().optional(),
     price: z.number().optional(),

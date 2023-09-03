@@ -1,0 +1,149 @@
+[
+    {
+        "title": "Introduction to Python Programming",
+        "description": "Learn the fundamentals of Python programming language.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753040/Pro%20careers/courses/1200px-Python-logo-notext.svg_sbl3mi.png",
+        "owner": "John Doe",
+        "price": 49
+    }
+    {
+        "title": "Web Development with HTML and CSS",
+        "description": "Build static websites using HTML and CSS.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753053/Pro%20careers/courses/1_lJ32Bl-lHWmNMUSiSq17gQ_o4olaj.png",
+        "owner": "Jane Smith",
+        "price": 59
+    }
+    {
+        "title": "JavaScript Fundamentals",
+        "description": "Master the basics of JavaScript for web development.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753074/Pro%20careers/courses/JavaScript-Tutorial_xhgpsy.svg",
+        "owner": "Mike Johnson",
+        "price": 69
+    }
+    {
+        "title": "Java Programming for Beginners",
+        "description": "Start your journey into Java programming.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753096/Pro%20careers/courses/800px-Java_programming_language_logo.svg_svnmiq.png",
+        "owner": "Emily Wilson",
+        "price": 79
+    }
+    {
+        "title": "C++ Programming Essentials",
+        "description": "Learn the essentials of C++ programming language.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753113/Pro%20careers/courses/800px-ISO_C_2B_2B_Logo.svg_i2exsz.png",
+        "owner": "David Brown",
+        "price": 69
+    }
+    {
+        "title": "Data Science with Python",
+        "description": "Explore data science concepts using Python.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753140/Pro%20careers/courses/python-for-data-science-course_c8ompd.jpg",
+        "owner": "Sarah Adams",
+        "price": 89
+    }
+    {
+        "title": "Full-Stack Web Development Bootcamp",
+        "description": "Become a full-stack developer in this comprehensive bootcamp.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753167/Pro%20careers/courses/How-to-Become-a-Full-Stack-Web-Developer-in-2021_ycmwbo.png",
+        "owner": "Alex Turner",
+        "price": 199
+    }
+    {
+        "title": "Machine Learning Fundamentals",
+        "description": "Get started with machine learning using Python.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753184/Pro%20careers/courses/1_cG6U1qstYDijh9bPL42e-Q_hyqmil.jpg",
+        "owner": "Rachel Martinez",
+        "price": 99
+    }
+    {
+        "title": "React.js for Frontend Development",
+        "description": "Learn React.js for building modern web applications.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753199/Pro%20careers/courses/1200px-React-icon.svg_zfvve4.png",
+        "owner": "Daniel Lee",
+        "price": 79
+    }
+    {
+        "title": "iOS App Development with Swift",
+        "description": "Create iOS apps with Swift programming language.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753215/Pro%20careers/courses/Swift_Associate_600x600_ljerli.png",
+        "owner": "Olivia Parker",
+        "price": 89
+    }
+    {
+        "title": "Android App Development with Kotlin",
+        "description": "Build Android apps using Kotlin.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753233/Pro%20careers/courses/Kotlin-for-Android-App-Development_imxizv.png",
+        "owner": "Michael White",
+        "price": 79
+    }
+    {
+        "title": "Game Development with Unity",
+        "description": "Develop games using the Unity game engine.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753259/Pro%20careers/courses/2514486_c4e0_qpcgjg.jpg",
+        "owner": "Linda Davis",
+        "price": 129
+    }
+    {
+        "title": "SQL Database Management",
+        "description": "Learn SQL for database management.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753282/Pro%20careers/courses/MSFT-1125-SQL_Server_2022_web_blade_image_RWWaqg_VP1-539x440_ihrjyd.png",
+        "owner": "Mark Anderson",
+        "price": 59
+    }
+    {
+        "title": "Blockchain Development",
+        "description": "Explore blockchain technology and development.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753295/Pro%20careers/courses/BLOCKCHAIN-DEVELOPMENT-3_ypsoal.jpg",
+        "owner": "William Turner",
+        "price": 89
+    }
+    {
+        "title": "DevOps Fundamentals",
+        "description": "Learn DevOps practices and tools.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753306/Pro%20careers/courses/800px-Devops-toolchain.svg_gkljxr.png",
+        "owner": "Sophia Clark",
+        "price": 69
+    }
+    {
+        "title": "Cybersecurity Essentials",
+        "description": "Get started with cybersecurity fundamentals.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753331/Pro%20careers/courses/shutterstock_505066678-scaled-scaled_fe7vhd.jpg",
+        "owner": "Chris Adams",
+        "price": 79
+    }
+    {
+        "title": "Cloud Computing with AWS",
+        "description": "Master cloud computing using Amazon Web Services.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753343/Pro%20careers/courses/Amazon_Web_Services_Logo_e7fm70.svg",
+        "owner": "Emma Lewis",
+        "price": 99
+    }
+    {
+        "title": "Data Structures and Algorithms",
+        "description": "Study essential data structures and algorithms.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753481/Pro%20careers/courses/what-are-data-structures-and-algorithms_sitjon.png",
+        "owner": "Nathan Turner",
+        "price": 69
+    }
+    {
+        "title": "Python for Data Analysis",
+        "description": "Use Python for data analysis and visualization.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753374/Pro%20careers/courses/maxresdefault_etek4z.jpg",
+        "owner": "Grace Wilson",
+        "price": 79
+    }
+    {
+        "title": "Artificial Intelligence",
+        "description": "Explore artificial intelligence concepts and applications.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753394/Pro%20careers/courses/artificial-intelligence_kzdcdg.jpg",
+        "owner": "Lucas Brown",
+        "price": 89
+    }
+    {
+        "title": "Flutter App Development",
+        "description": "Build cross-platform mobile apps with Flutter.",
+        "photoUrl": "https://res.cloudinary.com/arafatleo/image/upload/v1693753411/Pro%20careers/courses/Flutter-App-development_x4d0oc.jpg",
+        "owner": "Ava Smith",
+        "price": 79
+    }
+]
