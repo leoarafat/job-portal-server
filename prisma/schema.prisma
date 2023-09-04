@@ -142,6 +142,20 @@ model Courses {
   @@map("courses")
 }
 
+model Orders {
+  id            String   @id @default(uuid())
+  transactionId String
+  buyerName     String
+  buyerEmail    String
+  buyerId       String
+  courseId      String
+  courseName    String
+  price         Int
+  paid          Boolean? @default(false)
+
+  @@map("orders")
+}
+
 enum JobType {
   FullTime
   Internship

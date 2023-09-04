@@ -64,11 +64,50 @@ const deleteCourse = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Order Course
+const orderCourse = catchAsync(async (req: Request, res: Response) => {
+  const result = await CourseService.orderCourse(req.body);
 
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Order created successfully',
+    data: result,
+  });
+});
+//!Order Success
+const orderCourseSuccess = catchAsync(async (req: Request, res: Response) => {
+  const result = await CourseService.orderCourseSuccess(req.query);
+  console.log(result, 'Controller success');
+  // if (result) {
+  //   return res.redirect(
+  //     `http://localhost:3000/payment/success?transactionId=${result}`
+  //   );
+  // }
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Order created successfully',
+    data: result,
+  });
+});
+//!Order Failed
+const orderCourseFailed = catchAsync(async (req: Request, res: Response) => {
+  const result = await CourseService.orderCourseFailed(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Order Failed',
+    data: result,
+  });
+});
 export const CourseController = {
   insertIntoDB,
   getAllFromDB,
   getById,
   updateCourse,
   deleteCourse,
+  orderCourse,
+  orderCourseSuccess,
+  orderCourseFailed,
 };

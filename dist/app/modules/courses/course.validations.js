@@ -24,7 +24,7 @@ const create = zod_1.z.object({
 const update = zod_1.z.object({
     body: zod_1.z.object({
         title: zod_1.z.string().optional(),
-        firstName: zod_1.z.string().optional(),
+        description: zod_1.z.string().optional(),
         photoUrl: zod_1.z.string().optional(),
         owner: zod_1.z.string().optional(),
         price: zod_1.z.number().optional(),

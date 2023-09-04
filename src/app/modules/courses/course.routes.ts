@@ -9,6 +9,9 @@ router.post(
   validateRequest(CourseValidation.create),
   CourseController.insertIntoDB
 );
+router.post('/order', CourseController.orderCourse);
+router.post('/payment/success', CourseController.orderCourseSuccess);
+router.post('/payment/fail', CourseController.orderCourseFailed);
 router.get('/', CourseController.getAllFromDB);
 router.get('/:id', CourseController.getById);
 router.get('/:id', CourseController.deleteCourse);

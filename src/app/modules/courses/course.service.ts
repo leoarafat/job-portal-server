@@ -1,11 +1,15 @@
 import { Courses, Prisma } from '@prisma/client';
+
+import httpStatus from 'http-status';
+import SSLCommerzPayment from 'sslcommerz-lts';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { prisma } from '../../../shared/prisma';
 import { courseSearchableFields } from './course.constants';
 import { ICourseFilterRequest } from './course.interface';
-
+import { generateRandomUUID, is_live } from './course.utils';
 //!create Course
 const insertIntoDB = async (payload: Courses) => {
   const result = await prisma.courses.create({
@@ -101,10 +105,162 @@ const deleteCourse = async (id: string): Promise<Courses> => {
   return result;
 };
 
+// const orderCourse = async (payload: any) => {
+//   const tran_id = generateRandomUUID();
+
+//   const data = {
+//     total_amount: payload.price,
+//     currency: 'BDT',
+//     tran_id: tran_id, // use unique tran_id for each api call
+//     success_url: `http://localhost:5000/payment/success?transactionId=${tran_id}`,
+//     fail_url: `http://localhost:5000/payment/fail?transactionId=${tran_id}`,
+//     cancel_url: `http://localhost:5000/payment/cancel?transactionId=${tran_id}`,
+//     ipn_url: 'http://localhost:3030/ipn',
+//     shipping_method: 'Courier',
+//     product_name: payload.title,
+//     product_category: 'Electronic',
+//     product_profile: 'general',
+//     cus_name: payload.user.name,
+//     cus_email: payload.user.email,
+//     cus_add1: 'Dhaka',
+//     cus_add2: 'Dhaka',
+//     cus_city: 'Dhaka',
+//     cus_state: 'Dhaka',
+//     cus_postcode: '1000',
+//     cus_country: 'Bangladesh',
+//     cus_phone: '01711111111',
+//     cus_fax: '01711111111',
+//     ship_name: 'Customer Name',
+//     ship_add1: 'Dhaka',
+//     ship_add2: 'Dhaka',
+//     ship_city: 'Dhaka',
+//     ship_state: 'Dhaka',
+//     ship_postcode: 1000,
+//     ship_country: 'Bangladesh',
+//   };
+//   const sslcz = new SSLCommerzPayment(
+//     process.env.STORE_ID,
+//     process.env.STORE_PASSWORD,
+//     is_live
+//   );
+//   sslcz.init(data).then((apiResponse: { GatewayPageURL: string }) => {
+//     // Redirect the user to payment gateway
+//     const GatewayPageURL = apiResponse.GatewayPageURL;
+//     prisma.orders.create({
+//       data: {
+//         transactionId: tran_id,
+//         buyerName: payload.user.name,
+//         buyerEmail: payload.user.email,
+//         buyerId: payload.user.id,
+//         courseId: payload.id,
+//         courseName: payload.title,
+//         price: payload.price,
+//         paid: false,
+//       },
+//     });
+
+//     return { url: GatewayPageURL };
+//   });
+// };
+const orderCourse = (payload: any) => {
+  const tran_id = generateRandomUUID();
+
+  const data = {
+    total_amount: payload.price,
+    currency: 'BDT',
+    tran_id: tran_id,
+    success_url: `http://localhost:5000/payment/success?transactionId=${tran_id}`,
+    fail_url: `http://localhost:5000/payment/fail?transactionId=${tran_id}`,
+    cancel_url: `http://localhost:5000/payment/cancel?transactionId=${tran_id}`,
+    ipn_url: 'http://localhost:3030/ipn',
+    shipping_method: 'Courier',
+    product_name: payload.title,
+    product_category: 'Electronic',
+    product_profile: 'general',
+    cus_name: payload.user.name,
+    cus_email: payload.user.email,
+    cus_add1: 'Dhaka',
+    cus_add2: 'Dhaka',
+    cus_city: 'Dhaka',
+    cus_state: 'Dhaka',
+    cus_postcode: '1000',
+    cus_country: 'Bangladesh',
+    cus_phone: '01711111111',
+    cus_fax: '01711111111',
+    ship_name: 'Customer Name',
+    ship_add1: 'Dhaka',
+    ship_add2: 'Dhaka',
+    ship_city: 'Dhaka',
+    ship_state: 'Dhaka',
+    ship_postcode: 1000,
+    ship_country: 'Bangladesh',
+  };
+
+  const sslcz = new SSLCommerzPayment(
+    process.env.STORE_ID,
+    process.env.STORE_PASSWORD,
+    is_live
+  );
+
+  return new Promise((resolve, reject) => {
+    sslcz
+      .init(data)
+      .then((apiResponse: { GatewayPageURL: string }) => {
+        // Redirect the user to the payment gateway
+        const GatewayPageURL = apiResponse.GatewayPageURL;
+        prisma.orders.create({
+          data: {
+            transactionId: tran_id,
+            buyerName: payload.user.name,
+            buyerEmail: payload.user.email,
+            buyerId: payload.user.id,
+            courseId: payload.id,
+            courseName: payload.title,
+            price: payload.price,
+            paid: false,
+          },
+        });
+        resolve({ url: GatewayPageURL });
+      })
+      .catch((error: any) => {
+        reject(error);
+      });
+  });
+};
+const orderCourseSuccess = async (payload: any): Promise<any> => {
+  console.log(payload);
+  const { transactionId } = payload;
+  if (!transactionId) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Order Not Found');
+  }
+  const result = await prisma.orders.update({
+    where: transactionId,
+
+    data: {
+      paid: true,
+    },
+  });
+  if (result) {
+    return true;
+  }
+  return false;
+};
+const orderCourseFailed = async (id: string): Promise<Courses> => {
+  const result = await prisma.courses.delete({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const CourseService = {
   insertIntoDB,
   getAllFromDB,
   getById,
   updateCourse,
   deleteCourse,
+  orderCourse,
+  orderCourseSuccess,
+  orderCourseFailed,
 };
