@@ -81,7 +81,7 @@ const orderCourseSuccess = catchAsync(async (req: Request, res: Response) => {
 
   if (result) {
     return res.redirect(
-      `http://localhost:3000/payment/success?transactionId=${result?.transactionId}`
+      `https://pro-careers.vercel.app/payment/success?transactionId=${result?.transactionId}`
     );
   }
   sendResponse(res, {
@@ -102,19 +102,17 @@ const orderCourseFailed = catchAsync(async (req: Request, res: Response) => {
   });
 });
 //!Order get
-const getOrderByTransactionId = catchAsync(
-  async (req: Request, res: Response) => {
-    console.log(req.params.id);
-    const result = await CourseService.getOrderByTransactionId(req.params.id);
+const getOrderById = catchAsync(async (req: Request, res: Response) => {
+  console.log(req.params.id, 'params id');
+  const result = await CourseService.getOrderById(req.params.id);
 
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Order retrieved successfull',
-      data: result,
-    });
-  }
-);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Order retrieved successfull',
+    data: result,
+  });
+});
 export const CourseController = {
   insertIntoDB,
   getAllFromDB,
@@ -124,5 +122,5 @@ export const CourseController = {
   orderCourse,
   orderCourseSuccess,
   orderCourseFailed,
-  getOrderByTransactionId,
+  getOrderById,
 };

@@ -12,9 +12,6 @@ exports.jobSearchableFields = [
     'title',
     'requiredSkill',
     'education',
-    'location',
-    'companyName',
-    'jobCategory',
 ];
 exports.paginationsFields = [
     'limit',

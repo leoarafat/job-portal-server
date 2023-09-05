@@ -13,11 +13,11 @@ router.post('/order', CourseController.orderCourse);
 router.post('/payment/success', CourseController.orderCourseSuccess);
 router.post('/payment/fail', CourseController.orderCourseFailed);
 router.get('/', CourseController.getAllFromDB);
-router.get('/transaction/:id', CourseController.getOrderByTransactionId);
+
+router.get('/:id', CourseController.getOrderById);
+router.delete('/:id', CourseController.deleteCourse);
 router.get('/:id', CourseController.getById);
-router.get('/transaction/:id', CourseController.getOrderByTransactionId);
-router.get('/:id', CourseController.deleteCourse);
-router.get(
+router.patch(
   '/:id',
   validateRequest(CourseValidation.update),
   CourseController.updateCourse

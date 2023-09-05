@@ -76,10 +76,58 @@ const deleteCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result,
     });
 }));
+//!Order Course
+const orderCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield course_service_1.CourseService.orderCourse(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Ordered successfully',
+        data: result,
+    });
+}));
+//!Order Success
+const orderCourseSuccess = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield course_service_1.CourseService.orderCourseSuccess(req.query);
+    if (result) {
+        return res.redirect(`https://pro-careers.vercel.app/payment/success?transactionId=${result === null || result === void 0 ? void 0 : result.transactionId}`);
+    }
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Order created successfully',
+        data: result,
+    });
+}));
+//!Order Failed
+const orderCourseFailed = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield course_service_1.CourseService.orderCourseFailed(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Order Failed',
+        data: result,
+    });
+}));
+//!Order get
+const getOrderByTransactionId = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.params.id);
+    const result = yield course_service_1.CourseService.getOrderByTransactionId(req.params.id);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Order retrieved successfull',
+        data: result,
+    });
+}));
 exports.CourseController = {
     insertIntoDB,
     getAllFromDB,
     getById,
     updateCourse,
     deleteCourse,
+    orderCourse,
+    orderCourseSuccess,
+    orderCourseFailed,
+    getOrderByTransactionId,
 };

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Courses, Orders, Prisma } from '@prisma/client';
-
 import httpStatus from 'http-status';
+//@ts-ignore
 import SSLCommerzPayment from 'sslcommerz-lts';
 import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
@@ -105,82 +106,25 @@ const deleteCourse = async (id: string): Promise<Courses> => {
   return result;
 };
 
-//!order
-// const orderCourse = (payload: any) => {
-//   const tran_id = generateRandomUUID();
-
-//   const data = {
-//     total_amount: payload.price,
-//     currency: 'BDT',
-//     tran_id: tran_id,
-//     success_url: `http://localhost:5000/api/v1/courses/payment/success?transactionId=${tran_id}`,
-//     fail_url: `http://localhost:5000/orders/payment/fail?transactionId=${tran_id}`,
-//     cancel_url: `http://localhost:5000/orders/payment/cancel?transactionId=${tran_id}`,
-//     ipn_url: 'http://localhost:3030/ipn',
-//     shipping_method: 'Courier',
-//     product_name: payload.title,
-//     product_category: 'Electronic',
-//     product_profile: 'general',
-//     cus_name: payload.user.name,
-//     cus_email: payload.user.email,
-//     cus_add1: 'Dhaka',
-//     cus_add2: 'Dhaka',
-//     cus_city: 'Dhaka',
-//     cus_state: 'Dhaka',
-//     cus_postcode: '1000',
-//     cus_country: 'Bangladesh',
-//     cus_phone: '01711111111',
-//     cus_fax: '01711111111',
-//     ship_name: 'Customer Name',
-//     ship_add1: 'Dhaka',
-//     ship_add2: 'Dhaka',
-//     ship_city: 'Dhaka',
-//     ship_state: 'Dhaka',
-//     ship_postcode: 1000,
-//     ship_country: 'Bangladesh',
-//   };
-
-//   const sslcz = new SSLCommerzPayment(
-//     process.env.STORE_ID,
-//     process.env.STORE_PASSWORD,
-//     is_live
-//   );
-
-//   return new Promise((resolve, reject) => {
-//     sslcz
-//       .init(data)
-//       .then((apiResponse: { GatewayPageURL: string }) => {
-//         // Redirect the user to the payment gateway
-//         const GatewayPageURL = apiResponse.GatewayPageURL;
-//         prisma.orders.create({
-//           data: {
-//             transactionId: tran_id,
-//             buyerName: payload.user.name,
-//             buyerEmail: payload.user.email,
-//             buyerId: payload.user.id,
-//             courseId: payload.id,
-//             courseName: payload.title,
-//             price: payload.price,
-//             paid: false,
-//           },
-//         });
-//         resolve({ url: GatewayPageURL });
-//       })
-//       .catch((error: any) => {
-//         reject(error);
-//       });
-//   });
-// };
 const orderCourse = async (payload: any) => {
   const tran_id = generateRandomUUID();
-
+  console.log(payload);
+  const isExist = await prisma.orders.findFirst({
+    where: {
+      courseId: payload.id,
+      buyerId: payload?.user?.id,
+    },
+  });
+  if (isExist) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Already enrolled this course');
+  }
   const data = {
     total_amount: payload.price,
     currency: 'BDT',
     tran_id: tran_id,
-    success_url: `http://localhost:5000/api/v1/courses/payment/success?transactionId=${tran_id}`,
-    fail_url: `http://localhost:5000/orders/payment/fail?transactionId=${tran_id}`,
-    cancel_url: `http://localhost:5000/orders/payment/cancel?transactionId=${tran_id}`,
+    success_url: `https://job-box-two.vercel.app/api/v1/courses/payment/success?transactionId=${tran_id}`,
+    fail_url: `https://job-box-two.vercel.app/orders/payment/fail?transactionId=${tran_id}`,
+    cancel_url: `https://job-box-two.vercel.app/orders/payment/cancel?transactionId=${tran_id}`,
     ipn_url: 'http://localhost:3030/ipn',
     shipping_method: 'Courier',
     product_name: payload.title,
@@ -260,12 +204,10 @@ const orderCourseFailed = async (id: string): Promise<Courses> => {
   });
   return result;
 };
-const getOrderByTransactionId = async (
-  transactionId: any
-): Promise<Orders | null> => {
-  const result = await prisma.orders.findUnique({
+const getOrderById = async (id: string): Promise<Orders[]> => {
+  const result = await prisma.orders.findMany({
     where: {
-      transactionId: transactionId,
+      buyerId: id,
     },
   });
   return result;
@@ -279,5 +221,5 @@ export const CourseService = {
   orderCourse,
   orderCourseSuccess,
   orderCourseFailed,
-  getOrderByTransactionId,
+  getOrderById,
 };
