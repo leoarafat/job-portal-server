@@ -10,9 +10,6 @@ export const jobSearchableFields: string[] = [
   'title',
   'requiredSkill',
   'education',
-  'location',
-  'companyName',
-  'jobCategory',
 ];
 export const paginationsFields: string[] = [
   'limit',

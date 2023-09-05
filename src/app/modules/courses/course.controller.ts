@@ -71,19 +71,19 @@ const orderCourse = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Order created successfully',
+    message: 'Ordered successfully',
     data: result,
   });
 });
 //!Order Success
 const orderCourseSuccess = catchAsync(async (req: Request, res: Response) => {
   const result = await CourseService.orderCourseSuccess(req.query);
-  console.log(result, 'Controller success');
-  // if (result) {
-  //   return res.redirect(
-  //     `http://localhost:3000/payment/success?transactionId=${result}`
-  //   );
-  // }
+
+  if (result) {
+    return res.redirect(
+      `http://localhost:3000/payment/success?transactionId=${result?.transactionId}`
+    );
+  }
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -101,6 +101,20 @@ const orderCourseFailed = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Order get
+const getOrderByTransactionId = catchAsync(
+  async (req: Request, res: Response) => {
+    console.log(req.params.id);
+    const result = await CourseService.getOrderByTransactionId(req.params.id);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Order retrieved successfull',
+      data: result,
+    });
+  }
+);
 export const CourseController = {
   insertIntoDB,
   getAllFromDB,
@@ -110,4 +124,5 @@ export const CourseController = {
   orderCourse,
   orderCourseSuccess,
   orderCourseFailed,
+  getOrderByTransactionId,
 };

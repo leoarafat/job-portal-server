@@ -144,7 +144,7 @@ model Courses {
 
 model Orders {
   id            String   @id @default(uuid())
-  transactionId String
+  transactionId String   @unique
   buyerName     String
   buyerEmail    String
   buyerId       String

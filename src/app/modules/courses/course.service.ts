@@ -1,4 +1,4 @@
-import { Courses, Prisma } from '@prisma/client';
+import { Courses, Orders, Prisma } from '@prisma/client';
 
 import httpStatus from 'http-status';
 import SSLCommerzPayment from 'sslcommerz-lts';
@@ -105,16 +105,17 @@ const deleteCourse = async (id: string): Promise<Courses> => {
   return result;
 };
 
-// const orderCourse = async (payload: any) => {
+//!order
+// const orderCourse = (payload: any) => {
 //   const tran_id = generateRandomUUID();
 
 //   const data = {
 //     total_amount: payload.price,
 //     currency: 'BDT',
-//     tran_id: tran_id, // use unique tran_id for each api call
-//     success_url: `http://localhost:5000/payment/success?transactionId=${tran_id}`,
-//     fail_url: `http://localhost:5000/payment/fail?transactionId=${tran_id}`,
-//     cancel_url: `http://localhost:5000/payment/cancel?transactionId=${tran_id}`,
+//     tran_id: tran_id,
+//     success_url: `http://localhost:5000/api/v1/courses/payment/success?transactionId=${tran_id}`,
+//     fail_url: `http://localhost:5000/orders/payment/fail?transactionId=${tran_id}`,
+//     cancel_url: `http://localhost:5000/orders/payment/cancel?transactionId=${tran_id}`,
 //     ipn_url: 'http://localhost:3030/ipn',
 //     shipping_method: 'Courier',
 //     product_name: payload.title,
@@ -138,40 +139,48 @@ const deleteCourse = async (id: string): Promise<Courses> => {
 //     ship_postcode: 1000,
 //     ship_country: 'Bangladesh',
 //   };
+
 //   const sslcz = new SSLCommerzPayment(
 //     process.env.STORE_ID,
 //     process.env.STORE_PASSWORD,
 //     is_live
 //   );
-//   sslcz.init(data).then((apiResponse: { GatewayPageURL: string }) => {
-//     // Redirect the user to payment gateway
-//     const GatewayPageURL = apiResponse.GatewayPageURL;
-//     prisma.orders.create({
-//       data: {
-//         transactionId: tran_id,
-//         buyerName: payload.user.name,
-//         buyerEmail: payload.user.email,
-//         buyerId: payload.user.id,
-//         courseId: payload.id,
-//         courseName: payload.title,
-//         price: payload.price,
-//         paid: false,
-//       },
-//     });
 
-//     return { url: GatewayPageURL };
+//   return new Promise((resolve, reject) => {
+//     sslcz
+//       .init(data)
+//       .then((apiResponse: { GatewayPageURL: string }) => {
+//         // Redirect the user to the payment gateway
+//         const GatewayPageURL = apiResponse.GatewayPageURL;
+//         prisma.orders.create({
+//           data: {
+//             transactionId: tran_id,
+//             buyerName: payload.user.name,
+//             buyerEmail: payload.user.email,
+//             buyerId: payload.user.id,
+//             courseId: payload.id,
+//             courseName: payload.title,
+//             price: payload.price,
+//             paid: false,
+//           },
+//         });
+//         resolve({ url: GatewayPageURL });
+//       })
+//       .catch((error: any) => {
+//         reject(error);
+//       });
 //   });
 // };
-const orderCourse = (payload: any) => {
+const orderCourse = async (payload: any) => {
   const tran_id = generateRandomUUID();
 
   const data = {
     total_amount: payload.price,
     currency: 'BDT',
     tran_id: tran_id,
-    success_url: `http://localhost:5000/payment/success?transactionId=${tran_id}`,
-    fail_url: `http://localhost:5000/payment/fail?transactionId=${tran_id}`,
-    cancel_url: `http://localhost:5000/payment/cancel?transactionId=${tran_id}`,
+    success_url: `http://localhost:5000/api/v1/courses/payment/success?transactionId=${tran_id}`,
+    fail_url: `http://localhost:5000/orders/payment/fail?transactionId=${tran_id}`,
+    cancel_url: `http://localhost:5000/orders/payment/cancel?transactionId=${tran_id}`,
     ipn_url: 'http://localhost:3030/ipn',
     shipping_method: 'Courier',
     product_name: payload.title,
@@ -202,48 +211,46 @@ const orderCourse = (payload: any) => {
     is_live
   );
 
-  return new Promise((resolve, reject) => {
-    sslcz
-      .init(data)
-      .then((apiResponse: { GatewayPageURL: string }) => {
-        // Redirect the user to the payment gateway
-        const GatewayPageURL = apiResponse.GatewayPageURL;
-        prisma.orders.create({
-          data: {
-            transactionId: tran_id,
-            buyerName: payload.user.name,
-            buyerEmail: payload.user.email,
-            buyerId: payload.user.id,
-            courseId: payload.id,
-            courseName: payload.title,
-            price: payload.price,
-            paid: false,
-          },
-        });
-        resolve({ url: GatewayPageURL });
-      })
-      .catch((error: any) => {
-        reject(error);
-      });
+  const apiResponse = await sslcz.init(data);
+  // Redirect the user to the payment gateway
+  const GatewayPageURL = apiResponse.GatewayPageURL;
+
+  // Create the order
+  await prisma.orders.create({
+    data: {
+      transactionId: tran_id,
+      buyerName: payload.user.name,
+      buyerEmail: payload.user.email,
+      buyerId: payload.user.id,
+      courseId: payload.id,
+      courseName: payload.title,
+      price: payload.price,
+      paid: false,
+    },
   });
+
+  return { url: GatewayPageURL };
 };
+
 const orderCourseSuccess = async (payload: any): Promise<any> => {
-  console.log(payload);
   const { transactionId } = payload;
+
   if (!transactionId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Order Not Found');
   }
   const result = await prisma.orders.update({
-    where: transactionId,
+    where: {
+      transactionId: transactionId,
+    },
 
     data: {
       paid: true,
     },
   });
   if (result) {
-    return true;
+    return result;
   }
-  return false;
+  return transactionId;
 };
 const orderCourseFailed = async (id: string): Promise<Courses> => {
   const result = await prisma.courses.delete({
@@ -253,7 +260,16 @@ const orderCourseFailed = async (id: string): Promise<Courses> => {
   });
   return result;
 };
-
+const getOrderByTransactionId = async (
+  transactionId: any
+): Promise<Orders | null> => {
+  const result = await prisma.orders.findUnique({
+    where: {
+      transactionId: transactionId,
+    },
+  });
+  return result;
+};
 export const CourseService = {
   insertIntoDB,
   getAllFromDB,
@@ -263,4 +279,5 @@ export const CourseService = {
   orderCourse,
   orderCourseSuccess,
   orderCourseFailed,
+  getOrderByTransactionId,
 };
