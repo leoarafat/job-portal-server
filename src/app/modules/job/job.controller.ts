@@ -136,6 +136,15 @@ const addedComment = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const getAllJobPosts = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobService.getAllJobPosts();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Post retrieved successful',
+    data: result,
+  });
+});
 export const JobController = {
   insertIntoDb,
   getAllFromDB,
@@ -149,4 +158,5 @@ export const JobController = {
   addedComment,
   getPreviousJob,
   deleteSavedJob,
+  getAllJobPosts,
 };

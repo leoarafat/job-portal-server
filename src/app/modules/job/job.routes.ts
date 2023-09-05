@@ -20,6 +20,7 @@ router.post(
   JobController.savedJob
 );
 router.get('/', JobController.getAllFromDB);
+router.get('/all-posts', JobController.getAllJobPosts);
 router.get('/:id', JobController.getById);
 router.get('/previous-jobs/:id', JobController.getPreviousJob);
 router.get('/my-application/:id', JobController.myJob);

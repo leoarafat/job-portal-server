@@ -110,9 +110,9 @@ const orderCourseFailed = (0, catchAsync_1.default)((req, res) => __awaiter(void
     });
 }));
 //!Order get
-const getOrderByTransactionId = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params.id);
-    const result = yield course_service_1.CourseService.getOrderByTransactionId(req.params.id);
+const getOrderById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.params.id, 'params id');
+    const result = yield course_service_1.CourseService.getOrderById(req.params.id);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
@@ -129,5 +129,5 @@ exports.CourseController = {
     orderCourse,
     orderCourseSuccess,
     orderCourseFailed,
-    getOrderByTransactionId,
+    getOrderById,
 };

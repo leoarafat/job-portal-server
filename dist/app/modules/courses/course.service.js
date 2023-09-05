@@ -203,10 +203,10 @@ const orderCourseFailed = (id) => __awaiter(void 0, void 0, void 0, function* ()
     });
     return result;
 });
-const getOrderByTransactionId = (transactionId) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.prisma.orders.findUnique({
+const getOrderById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.orders.findMany({
         where: {
-            transactionId: transactionId,
+            buyerId: id,
         },
     });
     return result;
@@ -220,5 +220,5 @@ exports.CourseService = {
     orderCourse,
     orderCourseSuccess,
     orderCourseFailed,
-    getOrderByTransactionId,
+    getOrderById,
 };

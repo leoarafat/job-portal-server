@@ -236,6 +236,13 @@ const addedComment = async (payload: Comment): Promise<Comment> => {
   });
   return result;
 };
+
+const getAllJobPosts = async (): Promise<Job[]> => {
+  const result = await prisma.job.findMany({
+    take: 10,
+  });
+  return result;
+};
 export const JobService = {
   insertIntoDB,
   getAllFromDB,
@@ -249,4 +256,5 @@ export const JobService = {
   addedComment,
   getPreviousJob,
   deleteSavedJob,
+  getAllJobPosts,
 };
