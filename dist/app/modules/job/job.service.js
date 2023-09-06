@@ -238,6 +238,12 @@ const addedComment = (payload) => __awaiter(void 0, void 0, void 0, function* ()
     });
     return result;
 });
+const getAllJobPosts = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.job.findMany({
+        take: 10,
+    });
+    return result;
+});
 exports.JobService = {
     insertIntoDB,
     getAllFromDB,
@@ -251,4 +257,5 @@ exports.JobService = {
     addedComment,
     getPreviousJob,
     deleteSavedJob,
+    getAllJobPosts,
 };

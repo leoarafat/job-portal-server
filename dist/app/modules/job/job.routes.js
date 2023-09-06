@@ -14,6 +14,7 @@ router.post('/', job_controller_1.JobController.addedComment);
 router.post('/apply', (0, validateRequest_1.default)(job_validation_1.JobValidation.apply), job_controller_1.JobController.applyJob);
 router.post('/save-job', (0, validateRequest_1.default)(job_validation_1.JobValidation.save), job_controller_1.JobController.savedJob);
 router.get('/', job_controller_1.JobController.getAllFromDB);
+router.get('/all-posts', job_controller_1.JobController.getAllJobPosts);
 router.get('/:id', job_controller_1.JobController.getById);
 router.get('/previous-jobs/:id', job_controller_1.JobController.getPreviousJob);
 router.get('/my-application/:id', job_controller_1.JobController.myJob);
