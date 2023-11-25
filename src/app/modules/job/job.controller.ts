@@ -96,6 +96,16 @@ const myJob = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+//!Delete applied Job
+const deleteAppliedJob = catchAsync(async (req: Request, res: Response) => {
+  const result = await JobService.deleteAppliedJob(req.params.id);
+  sendResponse<SavedJob>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Applied job delete successfully',
+    data: result,
+  });
+});
 //!Save Job post
 const savedJob = catchAsync(async (req: Request, res: Response) => {
   const result = await JobService.saveJob(req.body);
@@ -159,4 +169,5 @@ export const JobController = {
   getPreviousJob,
   deleteSavedJob,
   getAllJobPosts,
+  deleteAppliedJob,
 };

@@ -183,6 +183,18 @@ const myJob = async (id: any): Promise<Application[] | null> => {
   });
   return result;
 };
+//! Delete My Job
+const deleteAppliedJob = async (id: string): Promise<SavedJob | null> => {
+  // console.log(id);
+  const result = await prisma.application.delete({
+    where: {
+      id: id,
+    },
+  });
+  console.log(result);
+  return result;
+};
+
 //!Job save list
 const saveJob = async (payload: SavedJob): Promise<SavedJob> => {
   const candidateId = payload?.candidateId;
@@ -257,4 +269,5 @@ export const JobService = {
   getPreviousJob,
   deleteSavedJob,
   getAllJobPosts,
+  deleteAppliedJob,
 };
