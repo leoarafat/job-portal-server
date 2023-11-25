@@ -171,10 +171,10 @@ const applyJob = async (payload: Application): Promise<Application> => {
 };
 
 //! My job list
-const myJob = async (payload: any): Promise<Application[] | null> => {
+const myJob = async (id: any): Promise<Application[] | null> => {
   const result = await prisma.application.findMany({
     where: {
-      candidateId: payload.id,
+      candidateId: id,
     },
     include: {
       candidate: true,

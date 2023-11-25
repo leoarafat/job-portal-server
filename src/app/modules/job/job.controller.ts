@@ -88,7 +88,7 @@ const applyJob = catchAsync(async (req: Request, res: Response) => {
 });
 //!Get my applied Job
 const myJob = catchAsync(async (req: Request, res: Response) => {
-  const result = await JobService.myJob(req.body);
+  const result = await JobService.myJob(req.params.id);
   sendResponse<Application[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
